@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <!--<property name="hibernate.connection.url">jdbc:postgresql://10.143.197.185:5432/LUNCH1</property>-->
+    <!--<property name="hibernate.connection.url">jdbc:postgresql://192.168.0.10:5432/LUNCH1</property>-->
+    <!--<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/LUNCH1</property>-->
+    <property name="hibernate.connection.url">jdbc:postgresql://93.188.163.97:5432/LUNCH1</property>
+    <property name="hibernate.connection.username">ULUNCH</property>
+    <property name="hibernate.connection.password">ALUNCH</property>
+    
+    <mapping class="co.com.lunch.persistencia.admin.CajaPredeterminadaEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.CategoriaEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.CombinacionesEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.GrupoAlimenticioEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.GrupoAlimenticioProductoEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.InformacionNutricionalEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.ItemEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.MarcaEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.ProductoEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.DiaEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.FavoritoItemEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.FeedbackEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.ListaEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.NinoEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.NumeroLoncheraEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.PadreEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.TarjetasEntity"/>
+  </session-factory>
+</hibernate-configuration>
