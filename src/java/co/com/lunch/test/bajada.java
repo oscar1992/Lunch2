@@ -7,7 +7,6 @@ package co.com.lunch.test;
 
 import co.com.lunch.logic.admin.ProductoLogic;
 import co.com.lunch.persistencia.admin.ProductoEntity;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;

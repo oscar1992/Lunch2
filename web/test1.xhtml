@@ -23,7 +23,7 @@ and open the template in the editor.
                     <p:inputText id="precio" value="#{test.valor}"/>
                     <h:outputText value="tipo"/>
                     <p:inputText id="tipo" value="#{test.tipo}"/>
-                    <p:commandButton value="SYBE" action="#{test.seteaNombres()}"/>
+                    <p:commandButton value="SYBE" action="#{test.seteaNombres()}" update="nombre, precio, tipo"/>
                 </p:panelGrid>
             </p:panel>
             <p:panel header="Información Nutricional de Producto" style="float: right; width: 49%">
@@ -46,7 +46,7 @@ and open the template in the editor.
                 </p:dataTable>
             </p:panel>
             <p:panel header="Tabla Productos">
-                <p:dataTable var="pro" value="#{bajada.listaProducto}" id="tablaProductos" style="float: bottom; width: 100%">
+                <p:dataTable var="pro" value="#{test.listaProducto}" id="tablaProductos" style="float: bottom; width: 100%">
                     <p:column headerText="Nombre">
                         <h:outputText value="#{pro.nombre}"/>
                     </p:column>
@@ -61,7 +61,7 @@ and open the template in the editor.
         </h:form>
         <h:form id="SUBE" enctype="multipart/form-data">
             <p:dialog modal="true" closable="false" widgetVar="subir">
-                <p:fileUpload fileUploadListener="#{test.subriArchivo}" mode="advanced"  dragDropSupport="false" multiple="false" sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                <p:fileUpload fileUploadListener="#{test.subriArchivo}" mode="advanced"  dragDropSupport="false" multiple="false" sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update=":test:tablaProductos"/>
                 
             </p:dialog>
         </h:form>

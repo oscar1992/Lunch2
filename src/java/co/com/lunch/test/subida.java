@@ -51,6 +51,7 @@ public class subida implements Serializable {
     private ArrayList<InformacionNutricionalEntity> lista;
     private ArrayList<TipoInformacionEntity> listaFiltro;
     private HashMap<String, Integer> listaMenu;
+    private ArrayList<ProductoEntity> listaProducto;
 
     public ArrayList<TipoInformacionEntity> getListaTipo() {
         return listaTipo;
@@ -156,6 +157,15 @@ public class subida implements Serializable {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public ArrayList<ProductoEntity> getListaProducto() {
+        return listaProducto;
+    }
+
+    public void setListaProducto(ArrayList<ProductoEntity> listaProducto) {
+        this.listaProducto = listaProducto;
+    }
+    
     
     
     
@@ -173,6 +183,7 @@ public class subida implements Serializable {
         producto.setNombre(nombre);
         producto.setPrecio(valor);
         producto.setTipo(Integer.parseInt(tipo));
+        listaProducto.add(producto);
         RequestContext.getCurrentInstance().execute("PF('subir').show()");
     }
     
@@ -192,14 +203,12 @@ public class subida implements Serializable {
                 
                 for(InformacionNutricionalEntity info:lista){
                     info.setItem(producto);
-                    
                 }
-                
-                
             }
             ingresaInformacionNutricional(lista);
             FacesContext.getCurrentInstance().addMessage(null, message);
             RequestContext.getCurrentInstance().execute("PF('subir').hide()");
+            
     }
     
     public void subriArchivo(FileUploadEvent event) {
@@ -207,7 +216,7 @@ public class subida implements Serializable {
             try {
                 producto.setNombreImagen(event.getFile().getFileName());
                 alamcenarArchivo(event.getFile().getFileName(), event.getFile().getInputstream());
-                
+                RequestContext.getCurrentInstance().update("tablaProductos");
             } catch (Exception iOException) {
                 System.out.println("ERROR DE SUBIDA: "+iOException.getMessage());
             }
@@ -326,7 +335,8 @@ public class subida implements Serializable {
     
     public void consulta(){
         try {
-            
+            ProductoLogic productoLogic=new ProductoLogic();
+            listaProducto=productoLogic.listaProducto();
             TipoInformacionLogic tipoInformacionLogic=new TipoInformacionLogic();
             ArrayList<TipoInformacionEntity>listaTipos=tipoInformacionLogic.listaTipoInformacion();
             for(TipoInformacionEntity obj: listaTipos){
