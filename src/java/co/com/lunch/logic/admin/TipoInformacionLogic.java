@@ -6,7 +6,9 @@
 package co.com.lunch.logic.admin;
 
 import co.com.lunch.conexion.HibernateUtil;
+import co.com.lunch.persistencia.admin.InformacionNutricionalEntity;
 import co.com.lunch.persistencia.admin.ProductoEntity;
+import co.com.lunch.persistencia.admin.TipoInformacionEntity;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -18,7 +20,7 @@ import org.hibernate.Transaction;
  *
  * @author oscarramirez
  */
-public class ProductoLogic {
+public class TipoInformacionLogic {
     private Session sesion;
     private Transaction tx;
     /**
@@ -35,67 +37,62 @@ public class ProductoLogic {
             }
             retorno=true;
         }catch(Error e){
-            System.out.println("ERROR: HibernateUtil en logic: "+e);
+            System.out.println("ERROR: HibernateUtil en logic");
             retorno=false;
         }
         return retorno;
     }
     /**
-     * Método que permite ingresar un regitro de Producto nuevo
+     * Método que permite ingresar un regitro de Tipos de información nuevos
      * @param info
      * @return 
      */
-    public ProductoEntity ingresaProducto(ProductoEntity info){
-        ProductoEntity infoRetorno=info;
+    public TipoInformacionEntity ingresaTipoInformacion(TipoInformacionEntity info){
+        TipoInformacionEntity infoRetorno=null;
         try{
             if(initOperation()){
                 info.setId(maxId());
                 sesion.save(info);
                 tx.commit();
-                sesion.close();
+                infoRetorno=info;
             }else{
-                System.out.println("ERROR de validación al conectar: ");
-                infoRetorno=null;
+                System.out.println("ERROR de validación al conectar");
             }
         }catch(Exception e){
-            System.out.println("ERROR en el save del objeto PRODUCTO: "+e.getMessage());
-            infoRetorno=null;
+            System.out.println("ERROR en el save del objeto");
         }
         return infoRetorno;
     }
     /**
-     * Métood que permite actualizar un registro de Producto existente
+     * Métood que permite actualizar un registro de los Tipos de información existentes
      * @param info
      * @return 
      */
-    public ProductoEntity actualizaProducto(ProductoEntity info){
-        ProductoEntity infoRetorno=null;
+    public TipoInformacionEntity actualizaTipoInformacion(TipoInformacionEntity info){
+        TipoInformacionEntity infoRetorno=null;
         try{
             if(initOperation()){
-                infoRetorno=info;
                 sesion.update(info);
                 tx.commit();
-                
+                infoRetorno=info;
             }else{
                 System.out.println("ERROR de validación al conectar");
-                infoRetorno=null;
             }
         }catch(Exception e){
             System.out.println("ERROR en el update del objeto");
-            infoRetorno=null;
         }
         return infoRetorno;
     }
     /**
-     * Método que trae toda la lista de registros de la Producto
+     * Método que trae toda la lista de registros de los Tipos de información
      * @return 
      */
-    public ArrayList<ProductoEntity> listaProducto(){
-        ArrayList<ProductoEntity>lista=new ArrayList<>();
+    public ArrayList<TipoInformacionEntity> listaTipoInformacion(){
+        ArrayList<TipoInformacionEntity>lista=new ArrayList<>();
         try{
             if(initOperation()){
-                Criteria criteria=sesion.createCriteria(ProductoEntity.class);
-                lista=(ArrayList<ProductoEntity>)criteria.list();
+                Criteria criteria=sesion.createCriteria(TipoInformacionEntity.class);
+                lista=(ArrayList<TipoInformacionEntity>)criteria.list();
             }else{
                 System.out.println("ERROR de validación al conectar");
             }
@@ -104,7 +101,28 @@ public class ProductoLogic {
         }
         return lista;
     }
- 
+    
+    /**
+     * Métood que permite eliminar un registro de los Tipos de información existentes
+     * @param info
+     * @return 
+     */
+    public TipoInformacionEntity eliminaTipoInformacion(TipoInformacionEntity info){
+        TipoInformacionEntity infoRetorno=null;
+        try{
+            if(initOperation()){
+                sesion.delete(info);
+                tx.commit();
+                infoRetorno=info;
+            }else{
+                System.out.println("ERROR de validación al conectar");
+            }
+        }catch(Exception e){
+            System.out.println("ERROR en el update del objeto");
+        }
+        return infoRetorno;
+    }
+    
     /**
      * Método que reemplaza el autoincrementable de la base de datos, se deja manual para
      * la interacción entre varios BDR
@@ -114,7 +132,7 @@ public class ProductoLogic {
         Integer retorna=-1;
         try{
             if(initOperation()){
-                Query query=sesion.createQuery("SELECT MAX(id) FROM ProductoEntity");
+                Query query=sesion.createQuery("SELECT MAX(id) FROM TipoInformacionEntity");
                 retorna =(Integer)query.uniqueResult();
                 retorna++;
             }else{

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/oscarramirez/NetBeansProjects/Lunch2/src/java/co/com/lunch/config/RUTAS.properties</file>
+            <file>file:/Users/oscarramirez/NetBeansProjects/Lunch2/src/java/co/com/lunch/persistencia/admin/ProductoEntity.java</file>
+            <file>file:/Users/oscarramirez/NetBeansProjects/Lunch2/web/test1.xhtml</file>
+            <file>file:/Users/oscarramirez/NetBeansProjects/Lunch2/src/java/co/com/lunch/logic/admin/ProductoLogic.java</file>
+            <file>file:/Users/oscarramirez/NetBeansProjects/Lunch2/src/java/co/com/lunch/test/init.java</file>
+            <file>file:/Users/oscarramirez/NetBeansProjects/Lunch2/src/java/co/com/lunch/conexion/hibernatePostgreSQL.cfg.xml</file>
+            <file>file:/Users/oscarramirez/NetBeansProjects/Lunch2/src/java/co/com/lunch/test/subida.java</file>
+        </group>
+    </open-files>
+</project-private>

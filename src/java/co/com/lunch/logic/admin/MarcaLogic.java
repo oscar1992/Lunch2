@@ -100,7 +100,26 @@ public class MarcaLogic {
         }
         return lista;
     }
- 
+    /**
+     * Método que permite eliminar una marca
+     * @param info
+     * @return 
+     */
+    public MarcaEntity eliminaMarca(MarcaEntity info){
+        MarcaEntity infoRetorno=null;
+        try{
+            if(initOperation()){
+                sesion.delete(info);
+                tx.commit();
+                infoRetorno=info;
+            }else{
+                System.out.println("ERROR de validación al conectar");
+            }
+        }catch(Exception e){
+            System.out.println("ERROR en el delete del objeto");
+        }
+        return infoRetorno;
+    }
     /**
      * Método que reemplaza el autoincrementable de la base de datos, se deja manual para
      * la interacción entre varios BDR

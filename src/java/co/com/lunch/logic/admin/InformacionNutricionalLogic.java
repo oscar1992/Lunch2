@@ -30,10 +30,14 @@ public class InformacionNutricionalLogic {
     private boolean initOperation(){
         boolean retorno=false;
         try{
-            if(sesion==null){
+            sesion=HibernateUtil.getSessionFactory().openSession();
+            tx=sesion.beginTransaction();
+            /*if(sesion==null){
                 sesion=HibernateUtil.getSessionFactory().openSession();
                 tx=sesion.beginTransaction();
-            }
+            }else{
+                System.out.println("Sesión existente");
+            }*/
             retorno=true;
         }catch(Error e){
             System.out.println("ERROR: HibernateUtil en logic");
@@ -52,16 +56,18 @@ public class InformacionNutricionalLogic {
             if(initOperation()){
                 info.setId(maxId());
                 sesion.save(info);
+                System.out.println("info: "+info.getId());
                 tx.commit();
                 infoRetorno=info;
             }else{
                 System.out.println("ERROR de validación al conectar");
             }
         }catch(Exception e){
-            System.out.println("ERROR en el save del objeto");
+            System.out.println("ERROR en el save del objeto info Nutricional: "+e);
         }
         return infoRetorno;
     }
+    
     /**
      * Métood que permite actualizar un registro de información nutricional existente
      * @param info
@@ -120,6 +126,28 @@ public class InformacionNutricionalLogic {
         }
         return lista;
     }
+    
+    /**
+     * Métood que permite eliminar un registro de información nutricional existente
+     * @param info
+     * @return 
+     */
+    public InformacionNutricionalEntity eliminaInformacionNutricional(InformacionNutricionalEntity info){
+        InformacionNutricionalEntity infoRetorno=null;
+        try{
+            if(initOperation()){
+                sesion.delete(info);
+                tx.commit();
+                infoRetorno=info;
+            }else{
+                System.out.println("ERROR de validación al conectar");
+            }
+        }catch(Exception e){
+            System.out.println("ERROR en el update del objeto");
+        }
+        return infoRetorno;
+    }
+    
     /**
      * Método que reemplaza el autoincrementable de la base de datos, se deja manual para
      * la interacción entre varios BDR

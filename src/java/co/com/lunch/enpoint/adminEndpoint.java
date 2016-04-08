@@ -14,6 +14,7 @@ import co.com.lunch.logic.admin.InformacionNutricionalLogic;
 import co.com.lunch.logic.admin.ItemLogic;
 import co.com.lunch.logic.admin.MarcaLogic;
 import co.com.lunch.logic.admin.ProductoLogic;
+import co.com.lunch.logic.admin.TipoInformacionLogic;
 import co.com.lunch.persistencia.admin.CajaPredeterminadaEntity;
 import co.com.lunch.persistencia.admin.CategoriaEntity;
 import co.com.lunch.persistencia.admin.CombinacionesEntity;
@@ -23,6 +24,7 @@ import co.com.lunch.persistencia.admin.InformacionNutricionalEntity;
 import co.com.lunch.persistencia.admin.ItemEntity;
 import co.com.lunch.persistencia.admin.MarcaEntity;
 import co.com.lunch.persistencia.admin.ProductoEntity;
+import co.com.lunch.persistencia.admin.TipoInformacionEntity;
 import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -418,7 +420,7 @@ public class adminEndpoint {
         return infoRetorna;
     }
 	
-	/**
+    /**
      * Método que permite insertar un registro de la Producto
      * @param info
      * @return 
@@ -465,6 +467,54 @@ public class adminEndpoint {
         }
         return infoRetorna;
     }
+    /**
+     * Método que permite insertar un registro de la Producto
+     * @param info
+     * @return 
+     */
+    @WebMethod(operationName = "ingresaTipoInformacionEntity")
+    public TipoInformacionEntity ingresaTipoInformacionEntity(@WebParam(name = "info")TipoInformacionEntity info){
+        TipoInformacionEntity infoRetorna=null;
+        try{
+            TipoInformacionLogic logic=new TipoInformacionLogic();
+            infoRetorna=logic.ingresaTipoInformacion(info);
+        }catch(Exception e){
+            System.out.println("ERROR en la inserción del webservice");
+        }
+        return infoRetorna;
+    }
+    /**
+     * Método que permite actualizar un registro de la Producto
+     * @param info
+     * @return 
+     */
+    @WebMethod(operationName = "actualizaTipoInformacionEntity")
+    public TipoInformacionEntity actualizaTipoInformacionEntity(@WebParam(name = "info")TipoInformacionEntity info){
+        TipoInformacionEntity infoRetorna=null;
+        try{
+            TipoInformacionLogic logic=new TipoInformacionLogic();
+            infoRetorna=logic.actualizaTipoInformacion(info);
+        }catch(Exception e){
+            System.out.println("ERROR en la actualización del webservice");
+        }
+        return infoRetorna;
+    }
+    /**
+     * Método que trae toda la lista de las informaciones nutricionales
+     * @return 
+     */
+    @WebMethod(operationName = "listaTipoInformacionEntity")
+    public ArrayList<TipoInformacionEntity> listaTipoInformacionEntity(){
+        ArrayList<TipoInformacionEntity> infoRetorna=null;
+        try{
+            TipoInformacionLogic logic=new TipoInformacionLogic();
+            infoRetorna=logic.listaTipoInformacion();
+        }catch(Exception e){
+            System.out.println("ERROR en la actualización del webservice");
+        }
+        return infoRetorna;
+    }
+    
     @WebMethod(operationName = "test")
     public int test(){
         return 58;

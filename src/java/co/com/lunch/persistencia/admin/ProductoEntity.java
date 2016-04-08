@@ -26,9 +26,13 @@ public class ProductoEntity implements Serializable{
     @Column(name = "PROD_NOMB")
     private String nombre;
     @Column(name = "PROD_IMAG")
-    private byte[] imagen;
+    private String imagen;
     @Column(name = "PROD_PREC")
     private String precio;
+    @Column(name = "PROD_NIMA")
+    private String nombreImagen;
+    @Column(name = "PROD_TIPO")
+    private int tipo;
     
     @JoinColumn(name = "PROD_CATE")
     @ManyToOne
@@ -56,11 +60,11 @@ public class ProductoEntity implements Serializable{
         this.nombre = nombre;
     }
 
-    public byte[] getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
@@ -95,4 +99,22 @@ public class ProductoEntity implements Serializable{
     public void setGrupo(GrupoAlimenticioEntity grupo) {
         this.grupo = grupo;
     }
+
+    public String getNombreImagen() {
+        return nombreImagen;
+    }
+
+    public void setNombreImagen(String nombreImagen) {
+        this.nombreImagen = nombreImagen;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+    
+    
 }

@@ -25,28 +25,21 @@ public class InformacionNutricionalEntity implements Serializable{
     @Id
     @Column(name = "INFO_INFO")
     private Integer id;
-    @Column(name = "INFO_TIPO")
-    private String tipo;
+    @JoinColumn(name = "INFO_TIPO")
+    @ManyToOne
+    private TipoInformacionEntity tipo;
     @Column(name = "VALOR")
     private double valor;
     @JoinColumn(name = "INFO_PROD")
     @ManyToOne
     private ProductoEntity item;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public double getValor() {
@@ -63,6 +56,16 @@ public class InformacionNutricionalEntity implements Serializable{
 
     public void setItem(ProductoEntity item) {
         this.item = item;
+    }
+
+    
+
+    public TipoInformacionEntity getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoInformacionEntity tipo) {
+        this.tipo = tipo;
     }
 
     
