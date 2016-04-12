@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class ItemEntity implements Serializable{
     @Id
     @Column(name = "ITEM_ITEM")
-    private Integer id;
+    private Integer idItem;
     @JoinColumn(name = "ITEM_PROD")
     @ManyToOne
     private ProductoEntity producto;
@@ -30,12 +30,12 @@ public class ItemEntity implements Serializable{
     @ManyToOne
     private CombinacionesEntity combinacion;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdItem() {
+        return idItem;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdItem(Integer idItem) {
+        this.idItem = idItem;
     }
 
     public ProductoEntity getProducto() {

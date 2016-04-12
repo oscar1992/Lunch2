@@ -19,7 +19,7 @@ import org.hibernate.Transaction;
  *
  * @author oscarramirez
  */
-public class GrupoAlimenticioLogic {
+public class GrupoAlimenticioLogic implements AutoCloseable{
     private Session sesion;
     private Transaction tx;
     /**
@@ -120,6 +120,22 @@ public class GrupoAlimenticioLogic {
             retorna=1;
         }
         return retorna;
+    }
+
+    @Override
+    public void close() throws Exception {
+        try {
+            if (tx != null) {
+                tx.commit();
+            }
+            if (sesion != null) {
+                sesion.close();
+                sesion = null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     

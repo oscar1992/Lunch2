@@ -18,7 +18,7 @@ import org.hibernate.Transaction;
  *
  * @author oscarramirez
  */
-public class CajaPredeterminadaLogic {
+public class CajaPredeterminadaLogic implements AutoCloseable{
     private Session sesion;
     private Transaction tx;
     /**
@@ -119,6 +119,22 @@ public class CajaPredeterminadaLogic {
             retorna=1;
         }
         return retorna;
+    }
+
+    @Override
+    public void close() throws Exception {
+        try {
+            if (tx != null) {
+                tx.commit();
+            }
+            if (sesion != null) {
+                sesion.close();
+                sesion = null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     

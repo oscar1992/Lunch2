@@ -6,8 +6,6 @@
 package co.com.lunch.logic.admin;
 
 import co.com.lunch.conexion.HibernateUtil;
-import co.com.lunch.persistencia.admin.InformacionNutricionalEntity;
-import co.com.lunch.persistencia.admin.ProductoEntity;
 import co.com.lunch.persistencia.admin.TipoInformacionEntity;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
@@ -20,7 +18,7 @@ import org.hibernate.Transaction;
  *
  * @author oscarramirez
  */
-public class TipoInformacionLogic {
+public class TipoInformacionLogic implements AutoCloseable{
     private Session sesion;
     private Transaction tx;
     /**
@@ -142,6 +140,22 @@ public class TipoInformacionLogic {
             retorna=1;
         }
         return retorna;
+    }
+
+    @Override
+    public void close() throws Exception {
+        try {
+            if (tx != null) {
+                tx.commit();
+            }
+            if (sesion != null) {
+                sesion.close();
+                sesion = null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     

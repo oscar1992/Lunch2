@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.com.lunch.logic.admin;
+package co.com.lunch.logic.cliente;
 
 import co.com.lunch.conexion.HibernateUtil;
 import co.com.lunch.persistencia.cliente.ListaEntity;
@@ -19,7 +19,7 @@ import org.hibernate.Transaction;
  *
  * @author oscarramirez
  */
-public class ListaLogic {
+public class ListaLogic implements AutoCloseable{
     private Session sesion;
     private Transaction tx;
     /**
@@ -120,6 +120,22 @@ public class ListaLogic {
             retorna=1;
         }
         return retorna;
+    }
+
+    @Override
+    public void close() throws Exception {
+        try {
+            if (tx != null) {
+                tx.commit();
+            }
+            if (sesion != null) {
+                sesion.close();
+                sesion = null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     

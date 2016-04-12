@@ -7,7 +7,6 @@ package co.com.lunch.logic.admin;
 
 import co.com.lunch.conexion.HibernateUtil;
 import co.com.lunch.persistencia.admin.ItemEntity;
-import co.com.lunch.persistencia.admin.ProductoEntity;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -19,7 +18,7 @@ import org.hibernate.Transaction;
  *
  * @author oscarramirez
  */
-public class ItemLogic {
+public class ItemLogic implements AutoCloseable{
     private Session sesion;
     private Transaction tx;
     /**
@@ -50,7 +49,7 @@ public class ItemLogic {
         ItemEntity infoRetorno=null;
         try{
             if(initOperation()){
-                info.setId(maxId());
+                info.setIdItem(maxId());
                 sesion.save(info);
                 tx.commit();
                 infoRetorno=info;
@@ -120,6 +119,22 @@ public class ItemLogic {
             retorna=1;
         }
         return retorna;
+    }
+
+    @Override
+    public void close() throws Exception {
+        try {
+            if (tx != null) {
+                tx.commit();
+            }
+            if (sesion != null) {
+                sesion.close();
+                sesion = null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     

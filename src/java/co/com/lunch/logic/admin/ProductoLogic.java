@@ -49,7 +49,7 @@ public class ProductoLogic {
         ProductoEntity infoRetorno=info;
         try{
             if(initOperation()){
-                info.setId(maxId());
+                info.setIdProducto(maxId());
                 sesion.save(info);
                 tx.commit();
                 sesion.close();

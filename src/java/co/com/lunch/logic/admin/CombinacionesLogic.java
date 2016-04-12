@@ -7,7 +7,6 @@ package co.com.lunch.logic.admin;
 
 import co.com.lunch.conexion.HibernateUtil;
 import co.com.lunch.persistencia.admin.CombinacionesEntity;
-import co.com.lunch.persistencia.admin.ProductoEntity;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -19,7 +18,7 @@ import org.hibernate.Transaction;
  *
  * @author oscarramirez
  */
-public class CombinacionesLogic {
+public class CombinacionesLogic implements AutoCloseable{
     private Session sesion;
     private Transaction tx;
     /**
@@ -120,6 +119,22 @@ public class CombinacionesLogic {
             retorna=1;
         }
         return retorna;
+    }
+
+    @Override
+    public void close() throws Exception {
+        try {
+            if (tx != null) {
+                tx.commit();
+            }
+            if (sesion != null) {
+                sesion.close();
+                sesion = null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     

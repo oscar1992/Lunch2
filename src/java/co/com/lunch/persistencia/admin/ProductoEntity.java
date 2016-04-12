@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class ProductoEntity implements Serializable{
     @Id
     @Column(name = "PROD_PROD")
-    private Integer id;
+    private Integer idProducto;
     @Column(name = "PROD_NOMB")
     private String nombre;
     @Column(name = "PROD_IMAG")
@@ -44,14 +44,15 @@ public class ProductoEntity implements Serializable{
     @ManyToOne
     private GrupoAlimenticioEntity grupo;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdProducto() {
+        return idProducto;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
     }
 
+    
     public String getNombre() {
         return nombre;
     }
