@@ -49,7 +49,7 @@ public class PadreLogic implements AutoCloseable{
         PadreEntity infoRetorno=null;
         try{
             if(initOperation()){
-                info.setId(maxId());
+                info.setIdPadre(maxId());
                 sesion.save(info);
                 tx.commit();
                 infoRetorno=info;
@@ -120,11 +120,54 @@ public class PadreLogic implements AutoCloseable{
         }
         return retorna;
     }
-
+    
+    //Método usado por el login para validar la existencia del padre junto con su contraseña
+    
+    public PadreEntity existePadre(String email, String pass){
+        
+        PadreEntity padre = null;
+        try{
+            if(initOperation()){
+                Query query = sesion.createQuery("SELECT p FROM PadreEntity p WHERE p.email = :ema AND p.contrasena = :pass");
+                query.setParameter("ema", email);
+                query.setParameter("pass", pass);
+                padre = (PadreEntity) query.uniqueResult();
+            }
+        }catch(Exception e){
+            System.out.println("Error Login: "+e);
+        }
+        if(padre == null){
+            System.out.println("Usuario no Existe");
+        }else{
+            System.out.println("Autenticación de: "+padre.getEmail());
+            
+        }
+        return padre;
+    }
+    
+    /**
+     * Método que trae un padre por su Id
+     * @param id
+     * @return 
+     */
+    public PadreEntity padrePorId(Integer id){
+        PadreEntity retorna = null;
+        try{
+            if(initOperation()){
+                Query query = sesion.createQuery("SELECT p FROM PadreEntity p WHERE p.idPadre = :idP");
+                query.setParameter("idP", id);
+                retorna = (PadreEntity) query.uniqueResult();
+            }
+        }catch(Exception e){
+            System.out.println("Error en la consulta de padrePorId");
+        }
+        return retorna;
+    }
+    
     @Override
     public void close() throws Exception {
         try {
-            if (tx != null) {
+            if (!tx.wasCommitted()) {
                 tx.commit();
             }
             if (sesion != null) {

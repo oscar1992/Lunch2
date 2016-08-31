@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Test Management Tipo de Información</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:commandButton value="Volver" action="#{Actua.volver()}"/>
+        </h:form>
+        <h:form enctype="multipart/form-data">
+            
+            <p:panel header="Actualización Producto" style="width: 49%">
+                <p:panelGrid columns="2">
+                    <h:outputText value="nombre"/>
+                    <p:inputText id="nombre" value="#{Actua.producto.nombre}"/>
+                    <h:outputText value="precio"/>
+                    <p:inputText id="precio" value="#{Actua.producto.precio}"/>
+                    <h:outputText value="tipo"/>
+                    <p:selectOneMenu id="tipo" value="#{Actua.producto.tipo}" style="width: 100%">
+                        <p:ajax listener="#{Sube.filtraCategoria(Sube.producto.tipo)}" update="cate" />
+                        <f:selectItems value="#{Sube.listaTipo}"/>
+                    </p:selectOneMenu>
+                    <h:outputText value="Categoaría"/>
+                    <p:selectOneMenu id="cate" value="#{Actua.producto.categoria.idCategoria}" style="width: 100%">
+                        <f:selectItems value="#{Sube.listaCate}"/>
+                    </p:selectOneMenu>
+                    <h:outputText value="Marca"/>
+                    <p:selectOneMenu id="marc" value="#{Actua.producto.marca.idMarca}" style="width: 100%">
+                        <f:selectItems value="#{Sube.listaMarca}"/>
+                    </p:selectOneMenu>
+                    <h:outputText value="Saludable"/>
+                    <p:selectBooleanCheckbox value="#{Actua.producto.salud}"/>
+                    <h:outputText value="Disponible"/>
+                    <p:selectBooleanCheckbox value="#{Actua.producto.disponible}"/>
+                    <h:outputText value="Imagen"/>
+                    <p:fileUpload value="#{Actua.sostiene2}" mode="simple"/>
+                    <h:commandButton value="Actualiza" action="#{Actua.actuaProducto()}" type="submit" >
+                        <f:ajax execute="@all" render="@form"/>
+                    </h:commandButton>
+                </p:panelGrid>
+            </p:panel>
+            <p:panel>
+                <p:panelGrid columns="2">
+                    <h:outputText value="Tipo"/>
+                    <p:selectOneMenu value="#{Info.idTipo}">
+                        <f:selectItems value="#{Info.listaTipos}"/>
+                    </p:selectOneMenu>
+                    <h:outputText value="Valor"/>
+                    <p:inputText id="valorI" value="#{Info.ingresa.valor}"/>
+                    <h:outputText value="Añade"/>
+                    <h:commandButton value="Añadir" action="#{Info.agergaInfo()}" type="submit" >
+                        
+                    </h:commandButton>
+                    <!--<p:commandButton action="" value="Añadir"/>-->
+                </p:panelGrid>
+                <p:dataTable id="tablaInfo" var="info" value="#{Info.listaInfo}" rowKey="#{info.id}" editable="true">
+                    <p:ajax event="rowEdit" listener="#{Info.activa}" update="tablaInfo" />
+                    <p:ajax event="rowEditCancel" listener="#{Info.cancela}" update="tablaInfo" />
+
+                    <p:column headerText="id">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{info.id}"/></f:facet>
+                            <f:facet name="input"><p:inputText value="a" disabled="true"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Tipo">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{info.tipo.tipoNombre}"/></f:facet>
+                            <f:facet name="input">
+                                <p:selectOneMenu value="#{info.tipo.idTinfo}" style="width: 100%">
+                                    <f:selectItems value="#{Info.listaTipos}"/>
+                                </p:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+
+                    </p:column>
+                    <p:column headerText="Valor">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{info.valor}"/></f:facet>
+                            <f:facet name="input"><p:inputText value="#{info.valor}"/></f:facet>
+                        </p:cellEditor>
+
+                    </p:column>
+                    <p:column headerText="Edita" style="width:32px;text-align: center">
+                        <p:column style="width:32px">
+                            <p:rowEditor />
+                        </p:column>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>

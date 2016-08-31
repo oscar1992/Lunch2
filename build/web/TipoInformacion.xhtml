@@ -27,15 +27,15 @@ and open the template in the editor.
                 <p:dataTable id="tabla" var="obj" value="#{TipoInformacion.lista}" editable="true" >
                     <p:ajax event="rowEdit" listener="#{TipoInformacion.editar}" update=":test:msgs, tabla"/>
                     <p:column headerText="Id">
-                        <h:outputText value="#{obj.id}"/>
+                        <h:outputText value="#{obj.idTinfo}"/>
                     </p:column>
                     <p:column headerText="Tipo de Informacion">
                         <p:cellEditor>
                             <f:facet name="output">
-                                <h:outputText value="#{obj.tipo}"/>
+                                <h:outputText value="#{obj.tipoNombre}"/>
                             </f:facet>
                             <f:facet name="input">
-                                <p:inputText value="#{obj.tipo}" style="width: 100%"/>
+                                <p:inputText value="#{obj.tipoNombre}" style="width: 100%"/>
                             </f:facet>
                         </p:cellEditor>
                         

@@ -29,20 +29,26 @@ public class ProductoEntity implements Serializable{
     private String imagen;
     @Column(name = "PROD_PREC")
     private String precio;
-    @Column(name = "PROD_NIMA")
-    private String nombreImagen;
-    @Column(name = "PROD_TIPO")
-    private int tipo;
-    
     @JoinColumn(name = "PROD_CATE")
     @ManyToOne
     private CategoriaEntity categoria;
     @JoinColumn(name = "PROD_MARC")
     @ManyToOne
     private MarcaEntity marca;
-    @JoinColumn(name = "PROD_GRUP")
+    @Column(name = "PROD_NIMA")
+    private String nombreImagen;
+    @JoinColumn(name = "PROD_INFO")
     @ManyToOne
-    private GrupoAlimenticioEntity grupo;
+    private InformacionNutricionalEntity info;
+    @Column(name = "PROD_TIPO")
+    private int tipo;
+    @Column(name = "PROD_SALU")
+    private boolean salud;
+    @Column(name = "PROD_DISP")
+    private boolean disponible;
+   
+    
+    
 
     public Integer getIdProducto() {
         return idProducto;
@@ -93,14 +99,6 @@ public class ProductoEntity implements Serializable{
         this.marca = marca;
     }
 
-    public GrupoAlimenticioEntity getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(GrupoAlimenticioEntity grupo) {
-        this.grupo = grupo;
-    }
-
     public String getNombreImagen() {
         return nombreImagen;
     }
@@ -115,6 +113,30 @@ public class ProductoEntity implements Serializable{
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
+    }
+
+    public InformacionNutricionalEntity getInfo() {
+        return info;
+    }
+
+    public void setInfo(InformacionNutricionalEntity info) {
+        this.info = info;
+    }
+
+    public boolean isSalud() {
+        return salud;
+    }
+
+    public void setSalud(boolean salud) {
+        this.salud = salud;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
     
     

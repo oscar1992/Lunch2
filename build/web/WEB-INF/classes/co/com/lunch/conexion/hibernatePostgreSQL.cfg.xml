@@ -16,9 +16,9 @@
     <property name="connection_pool_size">1</property>
     <property name="hibernate.c3p0.min_size">1</property>
     <property name="hibernate.c3p0.max_size">10</property>
-    <property name="hibernate.c3p0.timeout">300</property>
+    <property name="hibernate.c3p0.timeout">20</property>
     <property name="hibernate.c3p0.max_statements">50</property>
-    <property name="hibernate.c3p0.idle_test_period">2000</property>
+    <property name="hibernate.c3p0.idle_test_period">10</property>
     
     <mapping class="co.com.lunch.persistencia.admin.CajaPredeterminadaEntity"/>
     <mapping class="co.com.lunch.persistencia.admin.CategoriaEntity"/>
@@ -30,6 +30,7 @@
     <mapping class="co.com.lunch.persistencia.admin.MarcaEntity"/>
     <mapping class="co.com.lunch.persistencia.admin.ProductoEntity"/>
     <mapping class="co.com.lunch.persistencia.admin.TipoInformacionEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.TagsEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.DiaEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.FavoritoItemEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.FeedbackEntity"/>

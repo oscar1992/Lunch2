@@ -22,29 +22,29 @@ import javax.persistence.Table;
 public class NumeroLoncheraEntity implements Serializable{
     @Id
     @Column(name = "NLON_NLON")
-    private Integer id;
+    private Integer idNumeroLonchera;
     @Column(name = "NLON_NOMB")
-    private String nombre;
+    private String nombreNumero;
     @JoinColumn(name = "NLON_PADR")
     @ManyToOne
     private PadreEntity padre;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdNumeroLonchera() {
+        return idNumeroLonchera;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdNumeroLonchera(Integer idNumeroLonchera) {
+        this.idNumeroLonchera = idNumeroLonchera;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreNumero() {
+        return nombreNumero;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreNumero(String nombreNumero) {
+        this.nombreNumero = nombreNumero;
     }
-
+    
     public PadreEntity getPadre() {
         return padre;
     }

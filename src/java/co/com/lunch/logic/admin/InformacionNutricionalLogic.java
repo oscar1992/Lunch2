@@ -102,7 +102,7 @@ public class InformacionNutricionalLogic implements AutoCloseable{
                 System.out.println("ERROR de validación al conectar");
             }
         }catch(Exception e){
-            System.out.println("ERROR en el selectAll del objeto");
+            System.out.println("ERROR en el select All del objeto InfoNutricional");
         }
         return lista;
     }
@@ -113,16 +113,17 @@ public class InformacionNutricionalLogic implements AutoCloseable{
      */
     public ArrayList<InformacionNutricionalEntity> infoPorProducto(ProductoEntity producto){
         ArrayList<InformacionNutricionalEntity>lista=new ArrayList<>();
+        System.out.println("Consulta: "+ producto.getIdProducto());
         try{
             if(initOperation()){
-                Query query=sesion.createQuery("FROM InformacionNutricionalEntity I WHERE I.item=:OBJ");
-                query.setParameter("OBJ", producto);
+                Query query=sesion.createQuery("FROM InformacionNutricionalEntity I WHERE I.item.idProducto=:OBJ");
+                query.setParameter("OBJ", producto.getIdProducto());
                 lista=(ArrayList<InformacionNutricionalEntity>)query.list();
             }else{
                 System.out.println("ERROR de validación al conectar");
             }
         }catch(Exception e){
-            System.out.println("ERROR en el selectAll del objeto");
+            System.out.println("ERROR en el selectAll del objeto: "+e);
         }
         return lista;
     }
@@ -173,9 +174,11 @@ public class InformacionNutricionalLogic implements AutoCloseable{
     public void close() throws Exception {
         try {
             if (tx != null) {
+                initOperation();
                 tx.commit();
             }
             if (sesion != null) {
+                System.out.println("Cierra");
                 sesion.close();
                 sesion = null;
             }

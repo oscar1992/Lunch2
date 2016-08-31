@@ -49,7 +49,7 @@ public class CombinacionesLogic implements AutoCloseable{
         CombinacionesEntity infoRetorno=null;
         try{
             if(initOperation()){
-                info.setId(maxId());
+                info.setIdCombinaciones(maxId());
                 sesion.save(info);
                 tx.commit();
                 infoRetorno=info;

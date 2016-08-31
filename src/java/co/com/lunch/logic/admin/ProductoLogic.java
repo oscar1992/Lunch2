@@ -13,12 +13,13 @@ import org.hibernate.Query;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author oscarramirez
  */
-public class ProductoLogic {
+public class ProductoLogic implements AutoCloseable{
     private Session sesion;
     private Transaction tx;
     /**
@@ -87,10 +88,30 @@ public class ProductoLogic {
         return infoRetorno;
     }
     /**
-     * Método que trae toda la lista de registros de la Producto
+     * Método que trae toda la lista de registros de la tabla Producto si el producto está disponible
      * @return 
      */
     public ArrayList<ProductoEntity> listaProducto(){
+        ArrayList<ProductoEntity>lista=new ArrayList<>();
+        try{
+            if(initOperation()){
+                Criteria criteria=sesion.createCriteria(ProductoEntity.class);
+                criteria.add(Restrictions.eq("disponible", true));
+                lista=(ArrayList<ProductoEntity>)criteria.list();
+            }else{
+                System.out.println("ERROR de validación al conectar");
+            }
+        }catch(Exception e){
+            System.out.println("ERROR en el selectAll del objeto: "+e);
+        }
+        return lista;
+    }
+   
+    /**
+     * Método que trae todo lo que se halle en la tabla de los productos
+     * @return 
+     */
+    public ArrayList<ProductoEntity> listaProductosTodos(){
         ArrayList<ProductoEntity>lista=new ArrayList<>();
         try{
             if(initOperation()){
@@ -100,7 +121,7 @@ public class ProductoLogic {
                 System.out.println("ERROR de validación al conectar");
             }
         }catch(Exception e){
-            System.out.println("ERROR en el selectAll del objeto");
+            System.out.println("ERROR en el selectAll del objeto: "+e);
         }
         return lista;
     }
@@ -124,6 +145,40 @@ public class ProductoLogic {
             retorna=1;
         }
         return retorna;
+    }
+
+    
+    public ProductoEntity productoPorId(int id){
+        ProductoEntity retorna=null;
+        try{
+            if(initOperation()){
+                
+                Query query=sesion.createQuery("FROM ProductoEntity p WHERE p.idProducto=:ID");
+                query.setParameter("ID", id);
+                retorna=(ProductoEntity)query.uniqueResult();
+            }
+        }catch(Exception e){
+            System.out.println("Error en la consulta de un único Producto por ID: "+e);
+        }
+        return retorna;
+    }
+    
+    @Override
+    public void close() throws Exception {
+        try {
+            //System.out.println("cierra?");
+            if (tx != null) {
+                tx.commit();
+            }
+            if (sesion != null) {
+                sesion.close();
+                sesion = null;
+                //System.out.println("cerró");
+            }
+
+        } catch (Exception e) {
+            System.out.println("ERROR CLOSEABLE: "+e.getMessage());
+        }
     }
     
     

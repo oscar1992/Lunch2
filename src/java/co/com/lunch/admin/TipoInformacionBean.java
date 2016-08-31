@@ -77,7 +77,7 @@ public class TipoInformacionBean implements Serializable{
     }
     
     public void insertarMarca(){
-        objetoTipoInformacion.setTipo(tipoInformacion);
+        objetoTipoInformacion.setTipoNombre(tipoInformacion);
         TipoInformacionLogic tipoInformacionLogic=new TipoInformacionLogic();
         FacesMessage message;
         if(tipoInformacionLogic.ingresaTipoInformacion(objetoTipoInformacion)==null){

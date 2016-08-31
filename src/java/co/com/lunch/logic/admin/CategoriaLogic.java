@@ -49,7 +49,7 @@ public class CategoriaLogic implements AutoCloseable{
         CategoriaEntity infoRetorno=null;
         try{
             if(initOperation()){
-                info.setId(maxId());
+                info.setIdCategoria(maxId());
                 sesion.save(info);
                 tx.commit();
                 infoRetorno=info;

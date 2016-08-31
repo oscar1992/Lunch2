@@ -37,7 +37,7 @@ public class TipoInformcacionConverter implements Converter{
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
         if(o != null) {
-            return String.valueOf(((TipoInformacionEntity) o).getId());
+            return String.valueOf(((TipoInformacionEntity) o).getIdTinfo());
         }
         else {
             return null;

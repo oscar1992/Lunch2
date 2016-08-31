@@ -60,7 +60,7 @@ public class subida implements Serializable {
     public void setListaTipo(ArrayList<TipoInformacionEntity> listaTipo) {
         this.listaTipo = listaTipo;
     }
-    
+
     public TipoInformacionEntity getTipoInfo() {
         return tipoInfo;
     }
@@ -108,7 +108,7 @@ public class subida implements Serializable {
     public void setListaMenu(HashMap<String, Integer> listaMenu) {
         this.listaMenu = listaMenu;
     }
-    
+
     public ProductoEntity getProducto() {
         return producto;
     }
@@ -117,7 +117,6 @@ public class subida implements Serializable {
         this.producto = producto;
     }
 
-  
     public UploadedFile getFile() {
         return file;
     }
@@ -165,52 +164,51 @@ public class subida implements Serializable {
     public void setListaProducto(ArrayList<ProductoEntity> listaProducto) {
         this.listaProducto = listaProducto;
     }
-    
-    
-    
-    
+
     @PostConstruct
-    public void init(){
-        
+    public void init() {
+
         //System.out.println("construye");
         limpia();
-        listaMenu=new HashMap<String, Integer>();
+        listaMenu = new HashMap<String, Integer>();
         consulta();
     }
-    
-    public void seteaNombres(){
-        System.out.println("nombre sin objeto: "+nombre+" tipo: "+tipo);
+
+    public void seteaNombres() {
+        System.out.println("nombre sin objeto: " + nombre + " tipo: " + tipo);
         producto.setNombre(nombre);
         producto.setPrecio(valor);
         producto.setTipo(Integer.parseInt(tipo));
         listaProducto.add(producto);
         RequestContext.getCurrentInstance().execute("PF('subir').show()");
     }
-    
-    public void almacena() throws IOException{
-        
-            producto.setImagen(ruta);
-            System.out.println("nombre: "+producto.getNombre()+" precio: "+producto.getPrecio());
-            
-            ProductoLogic productoLogic = new ProductoLogic();
-            FacesMessage message;
-            if ((producto=productoLogic.ingresaProducto(producto)) == null) {
-                message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de Inserción", null);
-                System.out.println("Archivo NO Guardado");
-            } else {
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inserción Correcta", null);
-                System.out.println("Archivo Guardado");
-                
-                for(InformacionNutricionalEntity info:lista){
-                    info.setItem(producto);
-                }
+
+    public void almacena() throws IOException {
+
+        producto.setImagen(ruta);
+        System.out.println("nombre: " + producto.getNombre() + " precio: " + producto.getPrecio());
+
+        ProductoLogic productoLogic = new ProductoLogic();
+        FacesMessage message;
+        if ((producto = productoLogic.ingresaProducto(producto)) == null) {
+            message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de Inserción", null);
+            System.out.println("Archivo NO Guardado");
+        } else {
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inserción Correcta", null);
+            System.out.println("Archivo Guardado");
+
+            for (InformacionNutricionalEntity info : lista) {
+                System.out.println("INFO: " + info.getTipo());
+                info.setItem(producto);
             }
-            ingresaInformacionNutricional(lista);
-            FacesContext.getCurrentInstance().addMessage(null, message);
-            RequestContext.getCurrentInstance().execute("PF('subir').hide()");
-            
+        }
+        System.out.println("setea info");
+        ingresaInformacionNutricional(lista);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        RequestContext.getCurrentInstance().execute("PF('subir').hide()");
+
     }
-    
+
     public void subriArchivo(FileUploadEvent event) {
         if (event.getFile().getSize() > 0) {
             try {
@@ -218,17 +216,19 @@ public class subida implements Serializable {
                 alamcenarArchivo(event.getFile().getFileName(), event.getFile().getInputstream());
                 RequestContext.getCurrentInstance().update("tablaProductos");
             } catch (Exception iOException) {
-                System.out.println("ERROR DE SUBIDA: "+iOException.getMessage());
+                System.out.println("ERROR DE SUBIDA: " + iOException.getMessage());
             }
         }
     }
-
 
     private void alamcenarArchivo(String fileName, InputStream inputstream) {
         try {
             ResourceBundle rb = ResourceBundle.getBundle("co.com.lunch.config.RUTAS");
             ruta = rb.getString("IMAGENES").trim();
-            ruta +=fileName;
+            ruta += fileName;
+            System.out.println("Ruta: " + ruta);
+            System.out.println("fileName: " + fileName);
+            System.out.println("Input: " + inputstream);
             try (OutputStream out = new FileOutputStream(new File(ruta))) {
                 int read = 0;
                 byte[] bytes = new byte[2048];
@@ -239,41 +239,39 @@ public class subida implements Serializable {
                 out.flush();
             }
             almacena();
-            
-            
 
         } catch (Exception e) {
-            System.out.println("ERROR: "+e);
+            System.out.println("ERROR de ALMACENAMIENTO: " + e);
         }
     }
-    
-    public void editar(RowEditEvent event){
-        objetoInformacion=(InformacionNutricionalEntity)event.getObject();
-        InformacionNutricionalLogic marcaLogic=new InformacionNutricionalLogic();
+
+    public void editar(RowEditEvent event) {
+        objetoInformacion = (InformacionNutricionalEntity) event.getObject();
+        InformacionNutricionalLogic marcaLogic = new InformacionNutricionalLogic();
         FacesMessage message;
-        if(marcaLogic.actualizaInformacionNutricional(objetoInformacion)==null){
+        if (marcaLogic.actualizaInformacionNutricional(objetoInformacion) == null) {
             message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de Actualización", null);
             System.out.println("Informacion Nutricional NO Actuazlizado");
-        }else{
+        } else {
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Actualización Correcta", null);
             System.out.println("Informacion Nutricional Actualizado");
-            
+
         }
         FacesContext.getCurrentInstance().addMessage(null, message);
         limpia();
-        
+
     }
-    
-    public void eliminar(){
-        if(objetoInformacion==null){
+
+    public void eliminar() {
+        if (objetoInformacion == null) {
             System.out.println("Objeto Nulo");
-        }else{
-            InformacionNutricionalLogic marcaLogic=new InformacionNutricionalLogic();
+        } else {
+            InformacionNutricionalLogic marcaLogic = new InformacionNutricionalLogic();
             FacesMessage message;
-            if(marcaLogic.eliminaInformacionNutricional(objetoInformacion)==null){
+            if (marcaLogic.eliminaInformacionNutricional(objetoInformacion) == null) {
                 message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de Eliminación", null);
                 System.out.println("Informacion Nutricional NO Eliminado");
-            }else{
+            } else {
                 message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Eliminación Correcta", null);
                 System.out.println("Informacion Nutricional Eliminada");
                 lista.remove(objetoInformacion);
@@ -282,65 +280,71 @@ public class subida implements Serializable {
             limpia();
         }
     }
-    
-    public void limpia(){
-        objetoInformacion=new InformacionNutricionalEntity();
-        tipoInfo=new TipoInformacionEntity();
-        producto=new ProductoEntity();
+
+    public void limpia() {
+        objetoInformacion = new InformacionNutricionalEntity();
+        tipoInfo = new TipoInformacionEntity();
+        producto = new ProductoEntity();
+        //lista=new ArrayList<>();
         //
     }
 
-    public void anadirLista(){
-        //System.out.println("añade");
-            if(lista==null){
-                lista=new ArrayList<>();
-                //System.out.println("se reinicia");
-            }else{
-                lista.stream().forEach((tt) -> {
-                    //System.out.println("- "+tt.getTipo().getTipo()+" - "+tt.getValor());
-                });
+    public void anadirLista() {
+        System.out.println("añade: " + tipoInfo.getIdTinfo());
+
+        if (lista == null) {
+            lista = new ArrayList<>();
+            System.out.println("se reinicia");
+        } else {
+
+        }
+
+        TipoInformacionLogic tipoInformacionLogic = new TipoInformacionLogic();
+        listaTipo = tipoInformacionLogic.listaTipoInformacion();
+        TipoInformacionEntity tipoRet = new TipoInformacionEntity();
+        for (TipoInformacionEntity tipoP : listaTipo) {
+
+            if (tipoP.getIdTinfo() == tipoInfo.getIdTinfo()) {
+                System.out.println("tipo: " + tipoP.getTipoNombre());
+                tipoRet = tipoP;
+                objetoInformacion.setTipo(tipoRet);
+                objetoInformacion.setValor(Double.parseDouble(cantidad));
+                anadeLista(objetoInformacion);
             }
-            TipoInformacionLogic tipoInformacionLogic=new TipoInformacionLogic();
-            listaTipo=tipoInformacionLogic.listaTipoInformacion();
-            TipoInformacionEntity tipoRet=new TipoInformacionEntity();
-            for(TipoInformacionEntity tipoP: listaTipo){
-                
-                if(tipoP.getId()==tipoInfo.getId()){
-                    tipoRet=tipoP;
-                }
-            }
-            
-            objetoInformacion.setTipo(tipoRet);
-            objetoInformacion.setValor(Double.parseDouble(cantidad));
-            anadeLista(objetoInformacion);
-            limpia();
+        }
+
+        System.out.println("tama: " + lista.size());
+        lista.stream().forEach((tt) -> {
+            System.out.println("- " + tt.getTipo().getTipoNombre() + " - " + tt.getValor());
+        });
+        //limpia();
     }
-    
-    public void anadeLista(InformacionNutricionalEntity tipo){
+
+    public void anadeLista(InformacionNutricionalEntity tipo) {
         lista.add(tipo);
     }
-    
-    public boolean ingresaInformacionNutricional(ArrayList<InformacionNutricionalEntity> lista){
-        boolean retorna=false;
-        InformacionNutricionalLogic informacionNutricionalLogic=new InformacionNutricionalLogic();
-        for(InformacionNutricionalEntity info: lista){
-            if(informacionNutricionalLogic.ingresaInformacionNutricional(info)==null){
+
+    public boolean ingresaInformacionNutricional(ArrayList<InformacionNutricionalEntity> lista) {
+        boolean retorna = false;
+        InformacionNutricionalLogic informacionNutricionalLogic = new InformacionNutricionalLogic();
+        for (InformacionNutricionalEntity info : lista) {
+            if (informacionNutricionalLogic.ingresaInformacionNutricional(info) == null) {
                 System.out.println("Información no ingresada");
-            }else{
+            } else {
                 System.out.println("Información ingresada");
             }
         }
         return retorna;
     }
-    
-    public void consulta(){
+
+    public void consulta() {
         try {
-            ProductoLogic productoLogic=new ProductoLogic();
-            listaProducto=productoLogic.listaProducto();
-            TipoInformacionLogic tipoInformacionLogic=new TipoInformacionLogic();
-            ArrayList<TipoInformacionEntity>listaTipos=tipoInformacionLogic.listaTipoInformacion();
-            for(TipoInformacionEntity obj: listaTipos){
-                listaMenu.put(obj.getTipo(), obj.getId());
+            ProductoLogic productoLogic = new ProductoLogic();
+            listaProducto = productoLogic.listaProducto();
+            TipoInformacionLogic tipoInformacionLogic = new TipoInformacionLogic();
+            ArrayList<TipoInformacionEntity> listaTipos = tipoInformacionLogic.listaTipoInformacion();
+            for (TipoInformacionEntity obj : listaTipos) {
+                listaMenu.put(obj.getTipoNombre(), obj.getIdTinfo());
             }
         } catch (Exception e) {
         }

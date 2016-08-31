@@ -49,7 +49,7 @@ public class MarcaLogic implements AutoCloseable{
         MarcaEntity infoRetorno=null;
         try{
             if(initOperation()){
-                info.setId(maxId());
+                info.setIdMarca(maxId());
                 sesion.save(info);
                 tx.commit();
                 infoRetorno=info;

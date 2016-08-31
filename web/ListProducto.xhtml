@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Test Management Tipo de Información</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:dataTable var="produ" value="#{Lista.listaProductos}" selectionMode="single" selection="#{Lista.seleccion}" rowKey="#{produ.idProducto}">
+                <p:ajax event="rowSelect" listener="#{Lista.envia}" />
+                <p:column headerText="ID">
+                    <h:outputText value="#{produ.idProducto}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{produ.nombre}"/>
+                </p:column>
+                <p:column headerText="Imagen">
+                    <p:graphicImage url="/files/#{produ.nombreImagen}" height="64"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>

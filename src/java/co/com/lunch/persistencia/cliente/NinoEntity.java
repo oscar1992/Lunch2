@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 public class NinoEntity implements Serializable{
     @Id
     @Column(name="NINO_NINO")
-    private Integer id;
+    private Integer idNino;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "NINO_FECH")
     private Date fechaNacimineto;
@@ -35,15 +35,17 @@ public class NinoEntity implements Serializable{
     @ManyToOne
     private PadreEntity padre;
     @Column(name = "NINO_NOMB")
-    private String nombre;
-    
-    public Integer getId() {
-        return id;
+    private String nombreNino;
+
+    public Integer getIdNino() {
+        return idNino;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdNino(Integer idNino) {
+        this.idNino = idNino;
     }
+    
+    
 
     public Date getFechaNacimineto() {
         return fechaNacimineto;
@@ -69,12 +71,13 @@ public class NinoEntity implements Serializable{
         this.padre = padre;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreNino() {
+        return nombreNino;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreNino(String nombreNino) {
+        this.nombreNino = nombreNino;
     }
+
     
 }

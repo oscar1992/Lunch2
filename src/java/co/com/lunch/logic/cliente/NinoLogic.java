@@ -7,6 +7,7 @@ package co.com.lunch.logic.cliente;
 
 import co.com.lunch.conexion.HibernateUtil;
 import co.com.lunch.persistencia.cliente.NinoEntity;
+import co.com.lunch.persistencia.cliente.PadreEntity;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -49,9 +50,14 @@ public class NinoLogic implements AutoCloseable{
         NinoEntity infoRetorno=null;
         try{
             if(initOperation()){
-                info.setId(maxId());
+                info.setIdNino(maxId());
                 sesion.save(info);
-                tx.commit();
+                if (!tx.wasCommitted()) {
+                    tx.commit();
+                    close();
+                }else{
+                    System.out.println("Ya cometida");
+                }
                 infoRetorno=info;
             }else{
                 System.out.println("ERROR de validación al conectar");
@@ -120,12 +126,34 @@ public class NinoLogic implements AutoCloseable{
         }
         return retorna;
     }
-
+    
+    public ArrayList<NinoEntity> ninosPorPadre(PadreEntity padre){
+        ArrayList<NinoEntity> listaRet=null;
+        try{
+            if(initOperation()){
+                Query query = sesion.createQuery("SELECT n FROM NinoEntity n WHERE n.padre.id =:id");
+                query.setParameter("id", padre.getIdPadre());
+                listaRet=(ArrayList<NinoEntity>) query.list();
+            }else{
+                System.out.println("Error en la conexión, en ninosPorPadre");
+            }
+        }catch(Exception e){
+            System.out.println("Error general en ninosPorPadre: "+e);
+        }
+        return listaRet;
+    }
+    
     @Override
     public void close() throws Exception {
         try {
-            if (tx != null) {
+            if (!tx.wasCommitted()) {
+                try{
                 tx.commit();
+                }catch(Exception e){
+                    System.out.println("????: "+e);
+                }
+            }else{
+                initOperation();
             }
             if (sesion != null) {
                 sesion.close();

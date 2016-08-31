@@ -49,7 +49,7 @@ public class TipoInformacionLogic implements AutoCloseable{
         TipoInformacionEntity infoRetorno=null;
         try{
             if(initOperation()){
-                info.setId(maxId());
+                info.setIdTinfo(maxId());
                 sesion.save(info);
                 tx.commit();
                 infoRetorno=info;
@@ -149,6 +149,7 @@ public class TipoInformacionLogic implements AutoCloseable{
                 tx.commit();
             }
             if (sesion != null) {
+                System.out.println("Cierra TipoInfo");
                 sesion.close();
                 sesion = null;
             }

@@ -20,18 +20,19 @@ import javax.persistence.Table;
 public class MarcaEntity implements Serializable{
     @Id
     @Column(name = "MARC_MARC")
-    private Integer id;
+    private Integer idMarca;
     @Column(name = "MARC_NOMB")
     private String marca;
 
-    public int getId() {
-        return id;
+    public Integer getIdMarca() {
+        return idMarca;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdMarca(Integer idMarca) {
+        this.idMarca = idMarca;
     }
 
+    
     public String getMarca() {
         return marca;
     }

@@ -20,18 +20,18 @@ import javax.persistence.Table;
 public class CajaPredeterminadaEntity implements Serializable{
     @Id
     @Column(name = "CAJA_CAJA")
-    private Integer id;
+    private Integer idCaja;
     @Column(name = "CAJA_NOMB")
     private String nombre;
     @Column(name = "CAJA_COLO")
     private String color;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdCaja() {
+        return idCaja;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCaja(Integer idCaja) {
+        this.idCaja = idCaja;
     }
 
     public String getNombre() {

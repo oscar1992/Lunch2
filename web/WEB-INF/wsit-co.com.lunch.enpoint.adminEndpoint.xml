@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <definitions 
+ xmlns="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="adminEndpoint" targetNamespace="http://enpoint.lunch.com.co/" xmlns:tns="http://enpoint.lunch.com.co/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:fi="http://java.sun.com/xml/ns/wsit/2006/09/policy/fastinfoset/service" xmlns:tcp="http://java.sun.com/xml/ns/wsit/2006/09/policy/soaptcp/service" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsrm="http://docs.oasis-open.org/ws-rx/wsrmp/200702" 
+ >
+    <message name="ingresaInformacionNutricionalEntity"/>
+    <message name="ingresaInformacionNutricionalEntityResponse"/>
+    <message name="actualizaInformacionNutricionalEntity"/>
+    <message name="actualizaInformacionNutricionalEntityResponse"/>
+    <message name="listaInformacionNutricionalEntity"/>
+    <message name="listaInformacionNutricionalEntityResponse"/>
+    <message name="ingresaCajaPredeterminadaEntity"/>
+    <message name="ingresaCajaPredeterminadaEntityResponse"/>
+    <message name="actualizaCajaPredeterminadaEntity"/>
+    <message name="actualizaCajaPredeterminadaEntityResponse"/>
+    <message name="listaCajaPredeterminadaEntity"/>
+    <message name="listaCajaPredeterminadaEntityResponse"/>
+    <message name="ingresaCategoriaEntity"/>
+    <message name="ingresaCategoriaEntityResponse"/>
+    <message name="actualizaCategoriaEntity"/>
+    <message name="actualizaCategoriaEntityResponse"/>
+    <message name="listaCategoriaEntity"/>
+    <message name="listaCategoriaEntityResponse"/>
+    <message name="ingresaCombinacionesEntity"/>
+    <message name="ingresaCombinacionesEntityResponse"/>
+    <message name="actualizaCombinacionesEntity"/>
+    <message name="actualizaCombinacionesEntityResponse"/>
+    <message name="listaCombinacionesEntity"/>
+    <message name="listaCombinacionesEntityResponse"/>
+    <message name="ingresaGrupoAlimenticioEntity"/>
+    <message name="ingresaGrupoAlimenticioEntityResponse"/>
+    <message name="actualizaGrupoAlimenticioEntity"/>
+    <message name="actualizaGrupoAlimenticioEntityResponse"/>
+    <message name="listaGrupoAlimenticioEntity"/>
+    <message name="listaGrupoAlimenticioEntityResponse"/>
+    <message name="ingresaGrupoAlimenticioProductoEntity"/>
+    <message name="ingresaGrupoAlimenticioProductoEntityResponse"/>
+    <message name="actualizaGrupoAlimenticioProductoEntity"/>
+    <message name="actualizaGrupoAlimenticioProductoEntityResponse"/>
+    <message name="listaGrupoAlimenticioProductoEntity"/>
+    <message name="listaGrupoAlimenticioProductoEntityResponse"/>
+    <message name="ingresaItemEntity"/>
+    <message name="ingresaItemEntityResponse"/>
+    <message name="actualizaItemEntity"/>
+    <message name="actualizaItemEntityResponse"/>
+    <message name="listaItemEntity"/>
+    <message name="listaItemEntityResponse"/>
+    <message name="ingresaMarcaEntity"/>
+    <message name="ingresaMarcaEntityResponse"/>
+    <message name="actualizaMarcaEntity"/>
+    <message name="actualizaMarcaEntityResponse"/>
+    <message name="listaMarcaEntity"/>
+    <message name="listaMarcaEntityResponse"/>
+    <message name="ingresaProductoEntity"/>
+    <message name="ingresaProductoEntityResponse"/>
+    <message name="actualizaProductoEntity"/>
+    <message name="actualizaProductoEntityResponse"/>
+    <message name="listaProductoEntity"/>
+    <message name="listaProductoEntityResponse"/>
+    <message name="ingresaTipoInformacionEntity"/>
+    <message name="ingresaTipoInformacionEntityResponse"/>
+    <message name="actualizaTipoInformacionEntity"/>
+    <message name="actualizaTipoInformacionEntityResponse"/>
+    <message name="listaTipoInformacionEntity"/>
+    <message name="listaTipoInformacionEntityResponse"/>
+    <message name="test"/>
+    <message name="testResponse"/>
+    <message name="insertaTagsPorProducto"/>
+    <message name="insertaTagsPorProductoResponse"/>
+    <message name="tagsPorProducto"/>
+    <message name="tagsPorProductoResponse"/>
+    <portType name="adminEndpoint">
+        <operation name="ingresaInformacionNutricionalEntity">
+            <input message="tns:ingresaInformacionNutricionalEntity"/>
+            <output message="tns:ingresaInformacionNutricionalEntityResponse"/>
+        </operation>
+        <operation name="actualizaInformacionNutricionalEntity">
+            <input message="tns:actualizaInformacionNutricionalEntity"/>
+            <output message="tns:actualizaInformacionNutricionalEntityResponse"/>
+        </operation>
+        <operation name="listaInformacionNutricionalEntity">
+            <input message="tns:listaInformacionNutricionalEntity"/>
+            <output message="tns:listaInformacionNutricionalEntityResponse"/>
+        </operation>
+        <operation name="ingresaCajaPredeterminadaEntity">
+            <input message="tns:ingresaCajaPredeterminadaEntity"/>
+            <output message="tns:ingresaCajaPredeterminadaEntityResponse"/>
+        </operation>
+        <operation name="actualizaCajaPredeterminadaEntity">
+            <input message="tns:actualizaCajaPredeterminadaEntity"/>
+            <output message="tns:actualizaCajaPredeterminadaEntityResponse"/>
+        </operation>
+        <operation name="listaCajaPredeterminadaEntity">
+            <input message="tns:listaCajaPredeterminadaEntity"/>
+            <output message="tns:listaCajaPredeterminadaEntityResponse"/>
+        </operation>
+        <operation name="ingresaCategoriaEntity">
+            <input message="tns:ingresaCategoriaEntity"/>
+            <output message="tns:ingresaCategoriaEntityResponse"/>
+        </operation>
+        <operation name="actualizaCategoriaEntity">
+            <input message="tns:actualizaCategoriaEntity"/>
+            <output message="tns:actualizaCategoriaEntityResponse"/>
+        </operation>
+        <operation name="listaCategoriaEntity">
+            <input message="tns:listaCategoriaEntity"/>
+            <output message="tns:listaCategoriaEntityResponse"/>
+        </operation>
+        <operation name="ingresaCombinacionesEntity">
+            <input message="tns:ingresaCombinacionesEntity"/>
+            <output message="tns:ingresaCombinacionesEntityResponse"/>
+        </operation>
+        <operation name="actualizaCombinacionesEntity">
+            <input message="tns:actualizaCombinacionesEntity"/>
+            <output message="tns:actualizaCombinacionesEntityResponse"/>
+        </operation>
+        <operation name="listaCombinacionesEntity">
+            <input message="tns:listaCombinacionesEntity"/>
+            <output message="tns:listaCombinacionesEntityResponse"/>
+        </operation>
+        <operation name="ingresaGrupoAlimenticioEntity">
+            <input message="tns:ingresaGrupoAlimenticioEntity"/>
+            <output message="tns:ingresaGrupoAlimenticioEntityResponse"/>
+        </operation>
+        <operation name="actualizaGrupoAlimenticioEntity">
+            <input message="tns:actualizaGrupoAlimenticioEntity"/>
+            <output message="tns:actualizaGrupoAlimenticioEntityResponse"/>
+        </operation>
+        <operation name="listaGrupoAlimenticioEntity">
+            <input message="tns:listaGrupoAlimenticioEntity"/>
+            <output message="tns:listaGrupoAlimenticioEntityResponse"/>
+        </operation>
+        <operation name="ingresaGrupoAlimenticioProductoEntity">
+            <input message="tns:ingresaGrupoAlimenticioProductoEntity"/>
+            <output message="tns:ingresaGrupoAlimenticioProductoEntityResponse"/>
+        </operation>
+        <operation name="actualizaGrupoAlimenticioProductoEntity">
+            <input message="tns:actualizaGrupoAlimenticioProductoEntity"/>
+            <output message="tns:actualizaGrupoAlimenticioProductoEntityResponse"/>
+        </operation>
+        <operation name="listaGrupoAlimenticioProductoEntity">
+            <input message="tns:listaGrupoAlimenticioProductoEntity"/>
+            <output message="tns:listaGrupoAlimenticioProductoEntityResponse"/>
+        </operation>
+        <operation name="ingresaItemEntity">
+            <input message="tns:ingresaItemEntity"/>
+            <output message="tns:ingresaItemEntityResponse"/>
+        </operation>
+        <operation name="actualizaItemEntity">
+            <input message="tns:actualizaItemEntity"/>
+            <output message="tns:actualizaItemEntityResponse"/>
+        </operation>
+        <operation name="listaItemEntity">
+            <input message="tns:listaItemEntity"/>
+            <output message="tns:listaItemEntityResponse"/>
+        </operation>
+        <operation name="ingresaMarcaEntity">
+            <input message="tns:ingresaMarcaEntity"/>
+            <output message="tns:ingresaMarcaEntityResponse"/>
+        </operation>
+        <operation name="actualizaMarcaEntity">
+            <input message="tns:actualizaMarcaEntity"/>
+            <output message="tns:actualizaMarcaEntityResponse"/>
+        </operation>
+        <operation name="listaMarcaEntity">
+            <input message="tns:listaMarcaEntity"/>
+            <output message="tns:listaMarcaEntityResponse"/>
+        </operation>
+        <operation name="ingresaProductoEntity">
+            <input message="tns:ingresaProductoEntity"/>
+            <output message="tns:ingresaProductoEntityResponse"/>
+        </operation>
+        <operation name="actualizaProductoEntity">
+            <input message="tns:actualizaProductoEntity"/>
+            <output message="tns:actualizaProductoEntityResponse"/>
+        </operation>
+        <operation name="listaProductoEntity">
+            <input message="tns:listaProductoEntity"/>
+            <output message="tns:listaProductoEntityResponse"/>
+        </operation>
+        <operation name="ingresaTipoInformacionEntity">
+            <input message="tns:ingresaTipoInformacionEntity"/>
+            <output message="tns:ingresaTipoInformacionEntityResponse"/>
+        </operation>
+        <operation name="actualizaTipoInformacionEntity">
+            <input message="tns:actualizaTipoInformacionEntity"/>
+            <output message="tns:actualizaTipoInformacionEntityResponse"/>
+        </operation>
+        <operation name="listaTipoInformacionEntity">
+            <input message="tns:listaTipoInformacionEntity"/>
+            <output message="tns:listaTipoInformacionEntityResponse"/>
+        </operation>
+        <operation name="test">
+            <input message="tns:test"/>
+            <output message="tns:testResponse"/>
+        </operation>
+        <operation name="insertaTagsPorProducto">
+            <input message="tns:insertaTagsPorProducto"/>
+            <output message="tns:insertaTagsPorProductoResponse"/>
+        </operation>
+        <operation name="tagsPorProducto">
+            <input message="tns:tagsPorProducto"/>
+            <output message="tns:tagsPorProductoResponse"/>
+        </operation>
+    </portType>
+    <binding name="adminEndpointPortBinding" type="tns:adminEndpoint">
+        <operation name="ingresaInformacionNutricionalEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaInformacionNutricionalEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaInformacionNutricionalEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaCajaPredeterminadaEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaCajaPredeterminadaEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaCajaPredeterminadaEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaCategoriaEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaCategoriaEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaCategoriaEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaCombinacionesEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaCombinacionesEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaCombinacionesEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaGrupoAlimenticioEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaGrupoAlimenticioEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaGrupoAlimenticioEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaGrupoAlimenticioProductoEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaGrupoAlimenticioProductoEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaGrupoAlimenticioProductoEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaItemEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaItemEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaItemEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaMarcaEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaMarcaEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaMarcaEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaProductoEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaProductoEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaProductoEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaTipoInformacionEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaTipoInformacionEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaTipoInformacionEntity">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="test">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="insertaTagsPorProducto">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="tagsPorProducto">
+            <input/>
+            <output/>
+        </operation>
+    </binding>
+    <service name="adminEndpoint">
+        <port name="adminEndpointPort" binding="tns:adminEndpointPortBinding"/>
+    </service>
+</definitions>

@@ -8,6 +8,7 @@ package co.com.lunch.logic.admin;
 import co.com.lunch.conexion.HibernateUtil;
 import co.com.lunch.persistencia.admin.ItemEntity;
 import java.util.ArrayList;
+import java.util.Date;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 
@@ -124,16 +125,20 @@ public class ItemLogic implements AutoCloseable{
     @Override
     public void close() throws Exception {
         try {
+            java.util.Date fecha = new Date();
+            
+            System.out.println("Consulta Items: "+fecha);
             if (tx != null) {
                 tx.commit();
             }
             if (sesion != null) {
                 sesion.close();
                 sesion = null;
+                System.out.println("cerró");
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("ERROR CLOSEABLE: "+e.getMessage());
         }
     }
     

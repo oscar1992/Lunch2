@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Test Management Tipo de Información</title>
+        
+    </h:head>
+    <h:body>
+        <h:form enctype="multipart/form-data">
+            <p:panel header="Inserción Producto" style="width: 49%">
+                    <p:panelGrid columns="2">
+                    <h:outputText value="nombre"/>
+                    <p:inputText id="nombre" value="#{Sube.producto.nombre}"/>
+                    <h:outputText value="precio"/>
+                    <p:inputText id="precio" value="#{Sube.producto.precio}"/>
+                    <h:outputText value="tipo"/>
+                    <p:selectOneMenu id="tipo" value="#{Sube.producto.tipo}" style="width: 100%">
+                        <p:ajax listener="#{Sube.filtraCategoria(Sube.producto.tipo)}" update="cate" />
+                        <f:selectItems value="#{Sube.listaTipo}"/>
+                    </p:selectOneMenu>
+                    <h:outputText value="Categoaría"/>
+                    <p:selectOneMenu id="cate" value="#{Sube.producto.categoria.idCategoria}" style="width: 100%">
+                        <f:selectItems value="#{Sube.listaCate}"/>
+                    </p:selectOneMenu>
+                    <h:outputText value="Marca"/>
+                    <p:selectOneMenu id="marc" value="#{Sube.producto.marca.idMarca}" style="width: 100%">
+                        <f:selectItems value="#{Sube.listaMarca}"/>
+                    </p:selectOneMenu>
+                    <h:outputText value="Saludable"/>
+                    <p:selectBooleanCheckbox value="#{Sube.producto.salud}"/>
+                    <h:outputText value="Disponible"/>
+                    <p:selectBooleanCheckbox value="#{Sube.producto.disponible}"/>
+                    <h:outputText value="Imagen"/>
+                    <p:fileUpload value="#{Sube.sostiene2}" mode="simple"/>
+                    <h:commandButton value="SUBE" action="#{Sube.persisteProducto()}" type="button">
+                        <f:ajax execute="@all" render="@form"/>
+                    </h:commandButton>
+                </p:panelGrid>
+            </p:panel>
+            <p:panel rendered="#{Sube.muestraMSG}">
+                <h:outputText value="#{Sube.msgIngreso()}"/>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>

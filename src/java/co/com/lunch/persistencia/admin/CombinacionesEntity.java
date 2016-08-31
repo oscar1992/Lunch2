@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class CombinacionesEntity implements Serializable{
     @Id
     @Column(name = "COMB_COMB")
-    private Integer id;
+    private Integer idCombinaciones;
     @Column(name = "COMB_NOMB")
     private String nombre;
     @Column(name = "COMB_ORDE")
@@ -31,14 +31,15 @@ public class CombinacionesEntity implements Serializable{
     @ManyToOne
     private CajaPredeterminadaEntity caja;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdCombinaciones() {
+        return idCombinaciones;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCombinaciones(Integer idCombinaciones) {
+        this.idCombinaciones = idCombinaciones;
     }
 
+    
     public String getNombre() {
         return nombre;
     }

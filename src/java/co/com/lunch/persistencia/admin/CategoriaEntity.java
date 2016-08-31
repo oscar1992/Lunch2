@@ -20,23 +20,36 @@ import javax.persistence.Table;
 public class CategoriaEntity implements Serializable{
     @Id
     @Column(name = "CATE_CATE")
-    private Integer id;
+    private Integer idCategoria;
     @Column(name = "CATE_NOMB")
-    private String categoria;
+    private String nombreCategoria;
+    @Column(name = "CATE_TIPO")
+    private Integer tipo;
+    
 
-    public int getId() {
-        return id;
+    public Integer getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdCategoria(Integer idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public String getNombreCategoria() {
+        return nombreCategoria;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public void setNombreCategoria(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
     }
+    
+    public Integer getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Integer tipo) {
+        this.tipo = tipo;
+    }
+    
+    
 }

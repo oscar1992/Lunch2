@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class PadreEntity implements Serializable{
     @Id
     @Column(name = "PADR_PADR")
-    private Integer id;
+    private Integer idPadre;
     @Column(name = "PADR_NOMB")
     private String nombre;
     @Column(name = "PADR_TELE")
@@ -36,12 +36,12 @@ public class PadreEntity implements Serializable{
     @Column(name = "PADR_NCON")
     private String numeroconfirmacion;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdPadre() {
+        return idPadre;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdPadre(Integer idPadre) {
+        this.idPadre = idPadre;
     }
 
     public String getNombre() {

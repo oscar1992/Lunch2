@@ -20,24 +20,24 @@ import javax.persistence.Table;
 public class TipoInformacionEntity implements Serializable {
     @Id
     @Column(name = "TIPO_TIPO")
-    private int id;
+    private int idTinfo;
     @Column(name = "TIPO_NOMB")
-    private String tipo;
+    private String tipoNomb;
 
-    public int getId() {
-        return id;
+    public int getIdTinfo() {
+        return idTinfo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdTinfo(int id) {
+        this.idTinfo = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTipoNombre() {
+        return tipoNomb;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoNombre(String tipo) {
+        this.tipoNomb = tipo;
     }
     
     

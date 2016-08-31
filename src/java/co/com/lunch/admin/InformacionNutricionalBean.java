@@ -133,7 +133,7 @@ public class InformacionNutricionalBean {
             TipoInformacionLogic tipoInformacionLogic=new TipoInformacionLogic();
             ArrayList<TipoInformacionEntity>listaTipos=tipoInformacionLogic.listaTipoInformacion();
             for(TipoInformacionEntity obj: listaTipos){
-                listaMenu.put(obj.getTipo(), obj.getId());
+                listaMenu.put(obj.getTipoNombre(), obj.getIdTinfo());
             }
         } catch (Exception e) {
         }
@@ -192,7 +192,7 @@ public class InformacionNutricionalBean {
             listaTipo=tipoInformacionLogic.listaTipoInformacion();
             TipoInformacionEntity tipoRet=new TipoInformacionEntity();
             for(TipoInformacionEntity tipo: listaTipo){
-                if(tipo.getId()==tipo.getId()){
+                if(tipo.getIdTinfo()==tipo.getIdTinfo()){
                     tipoRet=tipo;
                 }
             }

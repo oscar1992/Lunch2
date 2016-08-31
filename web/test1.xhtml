@@ -29,7 +29,7 @@ and open the template in the editor.
             <p:panel header="Información Nutricional de Producto" style="float: right; width: 49%">
                 <p:panelGrid columns="2" id="datos">
                     <h:outputText value="Tipo"/>
-                    <p:selectOneMenu value="#{test.tipoInfo.id}">
+                    <p:selectOneMenu value="#{test.tipoInfo.idTinfo}">
                         <f:selectItems value="#{test.listaMenu}"/>
                     </p:selectOneMenu>
                     <h:outputText value="Cantidad"/>
@@ -38,7 +38,7 @@ and open the template in the editor.
                 </p:panelGrid>
                 <p:dataTable var="ele" value="#{test.lista}" id="tablaInformacion">
                     <p:column headerText="Tipo">
-                        <h:outputText value="#{ele.tipo.tipo}"/>
+                        <h:outputText value="#{ele.tipo.tipoNombre}"/>
                     </p:column>
                     <p:column headerText="Cantidad">
                         <h:outputText value="#{ele.valor}"/>
@@ -55,6 +55,12 @@ and open the template in the editor.
                     </p:column>
                     <p:column headerText="Imagen">
                         <p:graphicImage url="/files/#{pro.nombreImagen}" height="64"/>
+                    </p:column>
+                    <p:column headerText="Saludable">
+                        <h:outputText value="#{pro.salud}"/>
+                    </p:column>
+                    <p:column headerText="Disponible">
+                        <h:outputText value="#{pro.disponible}"/>
                     </p:column>
                 </p:dataTable>
             </p:panel>

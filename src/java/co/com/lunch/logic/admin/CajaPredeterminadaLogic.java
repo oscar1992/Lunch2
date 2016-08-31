@@ -49,7 +49,7 @@ public class CajaPredeterminadaLogic implements AutoCloseable{
         CajaPredeterminadaEntity infoRetorno=null;
         try{
             if(initOperation()){
-                info.setId(maxId());
+                info.setIdCaja(maxId());
                 sesion.save(info);
                 tx.commit();
                 infoRetorno=info;
