@@ -39,7 +39,7 @@ public class FavoritoItemLogic implements AutoCloseable {
                 sesion = HibernateUtil.getSessionFactory().openSession();
                 tx = sesion.beginTransaction();
             }
-            
+
             retorno = true;
         } catch (Error e) {
             System.out.println("ERROR: HibernateUtil en logic");
@@ -60,21 +60,21 @@ public class FavoritoItemLogic implements AutoCloseable {
             if (initOperation()) {
                 int id = maxId();
                 info.setIdFavorito(id);
-                System.out.println("info: "+ info.getIdFavorito());
+                System.out.println("info: " + info.getIdFavorito());
                 sesion.save(info);
-                
+                /*
                 if (!tx.wasCommitted()) {
                     tx.commit();
                     close();
-                }else{
+                } else {
                     System.out.println("Ya cometida");
-                }
+                }*/
                 infoRetorno = info;
             } else {
                 System.out.println("ERROR de validación al conectar");
             }
         } catch (Exception e) {
-            System.out.println("ERROR en el save del objeto  "+e);
+            System.out.println("ERROR en el save del objeto  " + e);
         }
         return infoRetorno;
     }
@@ -124,16 +124,19 @@ public class FavoritoItemLogic implements AutoCloseable {
     /**
      * Método que trae los items favoritos por padre
      *
-     * @param idPadre
+     * @param idLon
      * @return
      */
-    public ArrayList<FavoritoItemEntity> favoritoPorLonchera(Integer idPadre) {
+    public ArrayList<FavoritoItemEntity> favoritoPorLonchera(Integer idLon) {
         ArrayList<FavoritoItemEntity> lista = new ArrayList<>();
         try {
             if (initOperation()) {
-                Query query = sesion.createQuery("SELECT f FROM FavoritoItemEntity f WHERE f.nlonchera.id IN (SELECT n.id FROM NumeroLoncheraEntity n WHERE n.padre.id = :idL) ORDER BY f.id");
-                query.setParameter("idL", idPadre);
+                System.out.println("idLon: "+idLon);
+                //Query query = sesion.createQuery("SELECT f FROM FavoritoItemEntity f WHERE f.nlonchera.id IN (SELECT n.id FROM NumeroLoncheraEntity n WHERE n.padre.id = :idL) ORDER BY f.id");
+                Query query = sesion.createQuery("SELECT f FROM FavoritoItemEntity f WHERE f.nlonchera.idNumeroLonchera = :idL");
+                query.setParameter("idL", idLon);
                 lista = (ArrayList<FavoritoItemEntity>) query.list();
+                System.out.println("Lista: "+lista.size());
             }
         } catch (Exception e) {
             System.out.println("Error en la consulta de los favorios Por Lonchera");
@@ -153,57 +156,47 @@ public class FavoritoItemLogic implements AutoCloseable {
         boolean exito2 = false;
         try {
             if (initOperation()) {
-                Integer pad = null;
-                if(listaI != null){
-                    pad=listaI.get(0).getNlonchera().getPadre().getIdPadre();
-                }
-                NumeroLoncheraEntity nlon = new NumeroLoncheraEntity();
-                try(PadreLogic padreLogic = new PadreLogic()){
-                    PadreEntity padre = padreLogic.padrePorId(pad);
-                    if(padre != null){
-                        nlon.setPadre(padre);
-                        nlon.setNombreNumero("Favorita");
-                        exito = true;
-                    }else{
-                        exito=false;
+
+                for (FavoritoItemEntity item : listaI) {
+                    FavoritoItemEntity ingresa = new FavoritoItemEntity();
+                    System.out.println("NLONID: " + item.getNlonchera().getIdNumeroLonchera());
+                    ingresa.setNlonchera(item.getNlonchera());
+                    ingresa.setProducto(item.getProducto());
+                    ingresa = ingresaFavoritoItem(ingresa);
+                    if (ingresa != null) {
+                        exito2 = true;
+                    } else {
+                        exito2 = false;
                     }
-                    
-                }catch(Exception e){
-                    System.out.println("Error en el closeable de PadreLogic "+e);
+                    System.out.println("item: " + item.getProducto().getIdProducto() + " nlon: " + item.getNlonchera().getIdNumeroLonchera());
                 }
-                try (NumeroLoncheraLogic numeroLoncheraLogic = new NumeroLoncheraLogic()) {
-                    nlon = numeroLoncheraLogic.ingresaNumeroLonchera(nlon);
-                    
-                } catch (TransactionException ee) {
-                    System.out.println("Error autocloseable NumeroLoncheraLogic: " + ee);
-                }
-                if (nlon != null) {
-                    System.out.println("NLONID: " + nlon.getIdNumeroLonchera());
-                    for (FavoritoItemEntity item : listaI) {
-                        FavoritoItemEntity ingresa = new FavoritoItemEntity();
-                        ingresa.setNlonchera(nlon);
-                        ingresa.setProducto(item.getProducto());
-                        ingresa = ingresaFavoritoItem(ingresa);
-                        if(ingresa != null){
-                            exito2 = true;
-                        }else{
-                            exito2 = false;
-                        }
-                        System.out.println("item: " + item.getProducto().getIdProducto() + " nlon: " + item.getNlonchera().getIdNumeroLonchera());
-                    }
-                    
-                } else {
-                    exito2 = false;
-                    System.out.println("No insertó");
-                }
+
             }
-            
+
         } catch (Exception e) {
 
         }
         return exito && exito2;
     }
 
+    /**
+     * Método que trae todos los items de los favoritos
+     * @return 
+     */
+    public ArrayList<FavoritoItemEntity> favoritosTodos() {
+        ArrayList<FavoritoItemEntity> lista = new ArrayList<>();
+        try {
+            if (initOperation()) {
+                Query query = sesion.createQuery("SELECT f FROM FavoritoItemEntity f ");
+                lista = (ArrayList<FavoritoItemEntity>) query.list();
+                System.out.println("Lista: "+lista.size());
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la consulta de los favorios todos");
+        }
+        return lista;
+    }
+    
     /**
      * Método que reemplaza el autoincrementable de la base de datos, se deja
      * manual para la interacción entre varios BDR
@@ -230,12 +223,12 @@ public class FavoritoItemLogic implements AutoCloseable {
     public void close() throws Exception {
         try {
             if (!tx.wasCommitted()) {
-                try{
-                tx.commit();
-                }catch(Exception e){
-                    System.out.println("????: "+e);
+                try {
+                    tx.commit();
+                } catch (Exception e) {
+                    System.out.println("????: " + e);
                 }
-            }else{
+            } else {
                 initOperation();
             }
             if (sesion != null) {
@@ -244,7 +237,7 @@ public class FavoritoItemLogic implements AutoCloseable {
             }
 
         } catch (Exception e) {
-            System.out.println("AUTOCLOSEABLE FAIL: "+e);
+            System.out.println("AUTOCLOSEABLE FAIL: " + e);
             //e.printStackTrace();
         }
     }

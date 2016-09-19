@@ -129,12 +129,17 @@ public class NumeroLoncheraLogic implements AutoCloseable {
         return lista;
     }
 
-    public boolean ingresaFavorita(NumeroLoncheraEntity favo) {
-        boolean exito = false;
+    public NumeroLoncheraEntity ingresaFavorita(NumeroLoncheraEntity favo) {
+        NumeroLoncheraEntity exito = null;
         try {
-
+            if(initOperation()){
+                favo.setIdNumeroLonchera(maxId());
+                sesion.save(favo);
+                tx.commit();
+                exito = favo;
+            }
         } catch (Exception e) {
-
+            System.out.println("Error en el save de nlonchera");
         }
         return exito;
     }

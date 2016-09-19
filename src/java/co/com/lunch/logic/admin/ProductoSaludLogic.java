@@ -6,20 +6,21 @@
 package co.com.lunch.logic.admin;
 
 import co.com.lunch.conexion.HibernateUtil;
-import co.com.lunch.persistencia.admin.ItemEntity;
+import co.com.lunch.persistencia.admin.ProductoSaludEntity;
+import co.com.lunch.persistencia.admin.SaludEntity;
 import java.util.ArrayList;
-import java.util.Date;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
  * @author oscarramirez
  */
-public class ItemLogic implements AutoCloseable{
+public class ProductoSaludLogic implements AutoCloseable{
+    
     private Session sesion;
     private Transaction tx;
     /**
@@ -41,18 +42,22 @@ public class ItemLogic implements AutoCloseable{
         }
         return retorno;
     }
+    
     /**
-     * Método que permite ingresar un regitro de Item nuevo
+     * Método que permite ingresar un item a una caja saludable
      * @param info
      * @return 
      */
-    public ItemEntity ingresaItem(ItemEntity info){
-        ItemEntity infoRetorno=null;
+    public ProductoSaludEntity ingresaProductoSalud(ProductoSaludEntity info){
+        ProductoSaludEntity infoRetorno=null;
         try{
             if(initOperation()){
-                info.setIdItem(maxId());
+                info.setIdProductosalud(maxId());
+                System.out.println("id prod"+ info.getProducto().getIdProducto());
+                System.out.println("id salud: "+info.getSalud().getIdSalud());
+                System.out.println("id self: "+info.getIdProductosalud());
                 sesion.save(info);
-                //tx.commit();
+                tx.commit();
                 infoRetorno=info;
             }else{
                 System.out.println("ERROR de validación al conectar");
@@ -62,13 +67,34 @@ public class ItemLogic implements AutoCloseable{
         }
         return infoRetorno;
     }
+    
     /**
-     * Métood que permite actualizar un registro de Item existente
+     * Método que permite sumar al indice de la inserción
+     * @return 
+     */
+    private Integer maxId(){
+        Integer retorna=-1;
+        try{
+            if(initOperation()){
+                Query query=sesion.createQuery("SELECT MAX(id) FROM ProductoSaludEntity");
+                retorna =(Integer)query.uniqueResult();
+                retorna++;
+            }else{
+                System.out.println("ERROR de validación al conectar");
+            }
+        }catch(Exception e){
+            retorna=1;
+        }
+        return retorna;
+    }
+    
+    /**
+     * Método que permite cambiar un item de una lonchera saludable
      * @param info
      * @return 
      */
-    public ItemEntity actualizaItem(ItemEntity info){
-        ItemEntity infoRetorno=null;
+    public ProductoSaludEntity actualizaProductoSalud(ProductoSaludEntity info){
+        ProductoSaludEntity infoRetorno=null;
         try{
             if(initOperation()){
                 sesion.update(info);
@@ -82,52 +108,55 @@ public class ItemLogic implements AutoCloseable{
         }
         return infoRetorno;
     }
+    
     /**
-     * Método que trae toda la lista de registros de la Item
+     * Método que permite traer toda la lista de los productos-salud
      * @return 
      */
-    public ArrayList<ItemEntity> listaItem(){
-        ArrayList<ItemEntity>lista=new ArrayList<>();
+    public ArrayList<ProductoSaludEntity> listaProductoSalud(){
+        ArrayList<ProductoSaludEntity>lista=new ArrayList<>();
         try{
             if(initOperation()){
-                Criteria criteria=sesion.createCriteria(ItemEntity.class);
-                lista=(ArrayList<ItemEntity>)criteria.list();
+                Criteria criteria=sesion.createCriteria(ProductoSaludEntity.class);
+                lista=(ArrayList<ProductoSaludEntity>)criteria.list();
+                
             }else{
                 System.out.println("ERROR de validación al conectar");
             }
         }catch(Exception e){
-            System.out.println("ERROR en el selectAll del objeto");
+            System.out.println("ERROR en el selectAll del producto-salud");
         }
         return lista;
     }
- 
+    
     /**
-     * Método que reemplaza el autoincrementable de la base de datos, se deja manual para
-     * la interacción entre varios BDR
+     * Método que trae la lista los productos de las cajas saludables
+     * @param salud
      * @return 
      */
-    private Integer maxId(){
-        Integer retorna=-1;
+    public ArrayList<ProductoSaludEntity> productoPorcaja(SaludEntity salud){
+        ArrayList<ProductoSaludEntity>lista=new ArrayList<>();
+        
         try{
             if(initOperation()){
-                Query query=sesion.createQuery("SELECT MAX(id) FROM ItemEntity");
-                retorna =(Integer)query.uniqueResult();
-                retorna++;
+                Criteria criteria=sesion.createCriteria(ProductoSaludEntity.class);
+                System.out.println("id: "+salud.getIdSalud());
+                criteria.add(Restrictions.eq("salud.id", salud.getIdSalud()));
+                lista=(ArrayList<ProductoSaludEntity>)criteria.list();
+                System.out.println("Consuta");
             }else{
                 System.out.println("ERROR de validación al conectar");
             }
         }catch(Exception e){
-            retorna=1;
+            System.out.println("ERROR en el select de un producto-salud");
         }
-        return retorna;
+        return lista;
     }
-
+    
     @Override
     public void close() throws Exception {
         try {
-            java.util.Date fecha = new Date();
             
-            System.out.println("Consulta Items: "+fecha);
             if (tx != null) {
                 tx.commit();
             }
@@ -141,6 +170,4 @@ public class ItemLogic implements AutoCloseable{
             System.out.println("ERROR CLOSEABLE: "+e.getMessage());
         }
     }
-    
-    
 }

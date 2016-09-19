@@ -6,11 +6,10 @@
 package co.com.lunch.logic.admin;
 
 import co.com.lunch.conexion.HibernateUtil;
-import co.com.lunch.persistencia.admin.MarcaEntity;
+import co.com.lunch.persistencia.admin.SaludEntity;
 import java.util.ArrayList;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -18,7 +17,7 @@ import org.hibernate.Transaction;
  *
  * @author oscarramirez
  */
-public class MarcaLogic implements AutoCloseable{
+public class SaludLogic implements AutoCloseable{
     private Session sesion;
     private Transaction tx;
     /**
@@ -40,18 +39,19 @@ public class MarcaLogic implements AutoCloseable{
         }
         return retorno;
     }
+    
     /**
-     * Método que permite ingresar un regitro de Marca nuevo
+     * Método que ingresa una caja a la tabla de las saludables
      * @param info
      * @return 
      */
-    public MarcaEntity ingresaMarca(MarcaEntity info){
-        MarcaEntity infoRetorno=null;
+    public SaludEntity ingresaSalud(SaludEntity info){
+        SaludEntity infoRetorno=null;
         try{
             if(initOperation()){
-                info.setIdMarca(maxId());
+                info.setIdSalud(maxId());
                 sesion.save(info);
-                
+                tx.commit();
                 infoRetorno=info;
             }else{
                 System.out.println("ERROR de validación al conectar");
@@ -61,13 +61,34 @@ public class MarcaLogic implements AutoCloseable{
         }
         return infoRetorno;
     }
+    
     /**
-     * Métood que permite actualizar un registro de Marca existente
+     *Método que permite añadir un índice nuevo para la insecrion
+     * @return 
+     */
+    private Integer maxId(){
+        Integer retorna=-1;
+        try{
+            if(initOperation()){
+                Query query=sesion.createQuery("SELECT MAX(id) FROM SaludEntity");
+                retorna =(Integer)query.uniqueResult();
+                retorna++;
+            }else{
+                System.out.println("ERROR de validación al conectar");
+            }
+        }catch(Exception e){
+            retorna=1;
+        }
+        return retorna;
+    }
+    
+    /**
+     * Método que permite actualizar una caja
      * @param info
      * @return 
      */
-    public MarcaEntity actualizaMarca(MarcaEntity info){
-        MarcaEntity infoRetorno=null;
+    public SaludEntity actualizaSalud(SaludEntity info){
+        SaludEntity infoRetorno=null;
         try{
             if(initOperation()){
                 sesion.update(info);
@@ -81,16 +102,17 @@ public class MarcaLogic implements AutoCloseable{
         }
         return infoRetorno;
     }
+    
     /**
-     * Método que trae toda la lista de registros de la Marca
+     * Método que trae la lista de las cajas saludables
      * @return 
      */
-    public ArrayList<MarcaEntity> listaMarca(){
-        ArrayList<MarcaEntity>lista=new ArrayList<>();
+    public ArrayList<SaludEntity> listaItem(){
+        ArrayList<SaludEntity>lista=new ArrayList<>();
         try{
             if(initOperation()){
-                Criteria criteria=sesion.createCriteria(MarcaEntity.class);
-                lista=(ArrayList<MarcaEntity>)criteria.list();
+                Criteria criteria=sesion.createCriteria(SaludEntity.class);
+                lista=(ArrayList<SaludEntity>)criteria.list();
             }else{
                 System.out.println("ERROR de validación al conectar");
             }
@@ -99,62 +121,22 @@ public class MarcaLogic implements AutoCloseable{
         }
         return lista;
     }
-    /**
-     * Método que permite eliminar una marca
-     * @param info
-     * @return 
-     */
-    public MarcaEntity eliminaMarca(MarcaEntity info){
-        MarcaEntity infoRetorno=null;
-        try{
-            if(initOperation()){
-                sesion.delete(info);
-                tx.commit();
-                infoRetorno=info;
-            }else{
-                System.out.println("ERROR de validación al conectar");
-            }
-        }catch(Exception e){
-            System.out.println("ERROR en el delete del objeto");
-        }
-        return infoRetorno;
-    }
-    /**
-     * Método que reemplaza el autoincrementable de la base de datos, se deja manual para
-     * la interacción entre varios BDR
-     * @return 
-     */
-    private Integer maxId(){
-        Integer retorna=-1;
-        try{
-            if(initOperation()){
-                Query query=sesion.createQuery("SELECT MAX(id) FROM MarcaEntity");
-                retorna =(Integer)query.uniqueResult();
-                retorna++;
-            }else{
-                System.out.println("ERROR de validación al conectar");
-            }
-        }catch(Exception e){
-            retorna=1;
-        }
-        return retorna;
-    }
-
+    
     @Override
     public void close() throws Exception {
         try {
+            
             if (tx != null) {
                 tx.commit();
             }
             if (sesion != null) {
                 sesion.close();
                 sesion = null;
+                //System.out.println("cerró");
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("ERROR CLOSEABLE: "+e.getMessage());
         }
     }
-    
-    
 }

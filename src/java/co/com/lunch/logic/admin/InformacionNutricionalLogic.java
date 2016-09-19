@@ -113,7 +113,7 @@ public class InformacionNutricionalLogic implements AutoCloseable{
      */
     public ArrayList<InformacionNutricionalEntity> infoPorProducto(ProductoEntity producto){
         ArrayList<InformacionNutricionalEntity>lista=new ArrayList<>();
-        System.out.println("Consulta: "+ producto.getIdProducto());
+        //System.out.println("Consulta: "+ producto.getIdProducto());
         try{
             if(initOperation()){
                 Query query=sesion.createQuery("FROM InformacionNutricionalEntity I WHERE I.item.idProducto=:OBJ");
@@ -174,11 +174,10 @@ public class InformacionNutricionalLogic implements AutoCloseable{
     public void close() throws Exception {
         try {
             if (tx != null) {
-                initOperation();
                 tx.commit();
             }
             if (sesion != null) {
-                System.out.println("Cierra");
+                //System.out.println("Cierra");
                 sesion.close();
                 sesion = null;
             }

@@ -71,6 +71,20 @@
     <message name="insertaTagsPorProductoResponse"/>
     <message name="tagsPorProducto"/>
     <message name="tagsPorProductoResponse"/>
+    <message name="actualizaSalud"/>
+    <message name="actualizaSaludResponse"/>
+    <message name="listaProductoSalud"/>
+    <message name="listaProductoSaludResponse"/>
+    <message name="ingresaProductoSalud"/>
+    <message name="ingresaProductoSaludResponse"/>
+    <message name="listaSalud"/>
+    <message name="listaSaludResponse"/>
+    <message name="actualizaProductoSalud"/>
+    <message name="actualizaProductoSaludResponse"/>
+    <message name="ingresaSalud"/>
+    <message name="ingresaSaludResponse"/>
+    <message name="listaProductoSaludTodos"/>
+    <message name="listaProductoSaludTodosResponse"/>
     <portType name="adminEndpoint">
         <operation name="ingresaInformacionNutricionalEntity">
             <input message="tns:ingresaInformacionNutricionalEntity"/>
@@ -204,6 +218,34 @@
             <input message="tns:tagsPorProducto"/>
             <output message="tns:tagsPorProductoResponse"/>
         </operation>
+        <operation name="actualizaSalud">
+            <input message="tns:actualizaSalud"/>
+            <output message="tns:actualizaSaludResponse"/>
+        </operation>
+        <operation name="listaProductoSalud">
+            <input message="tns:listaProductoSalud"/>
+            <output message="tns:listaProductoSaludResponse"/>
+        </operation>
+        <operation name="ingresaProductoSalud">
+            <input message="tns:ingresaProductoSalud"/>
+            <output message="tns:ingresaProductoSaludResponse"/>
+        </operation>
+        <operation name="listaSalud">
+            <input message="tns:listaSalud"/>
+            <output message="tns:listaSaludResponse"/>
+        </operation>
+        <operation name="actualizaProductoSalud">
+            <input message="tns:actualizaProductoSalud"/>
+            <output message="tns:actualizaProductoSaludResponse"/>
+        </operation>
+        <operation name="ingresaSalud">
+            <input message="tns:ingresaSalud"/>
+            <output message="tns:ingresaSaludResponse"/>
+        </operation>
+        <operation name="listaProductoSaludTodos">
+            <input message="tns:listaProductoSaludTodos"/>
+            <output message="tns:listaProductoSaludTodosResponse"/>
+        </operation>
     </portType>
     <binding name="adminEndpointPortBinding" type="tns:adminEndpoint">
         <operation name="ingresaInformacionNutricionalEntity">
@@ -335,6 +377,34 @@
             <output/>
         </operation>
         <operation name="tagsPorProducto">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaSalud">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaProductoSalud">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaProductoSalud">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaSalud">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="actualizaProductoSalud">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="ingresaSalud">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="listaProductoSaludTodos">
             <input/>
             <output/>
         </operation>

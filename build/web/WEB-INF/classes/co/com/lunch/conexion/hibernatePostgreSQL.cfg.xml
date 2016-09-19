@@ -6,8 +6,8 @@
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
     <!--<property name="hibernate.connection.url">jdbc:postgresql://10.143.197.185:5432/LUNCH1</property>-->
     <!--<property name="hibernate.connection.url">jdbc:postgresql://192.168.0.10:5432/LUNCH1</property>-->
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/LUNCH1</property>
-    <!--<property name="hibernate.connection.url">jdbc:postgresql://93.188.163.97:5432/LUNCH1</property>-->
+    <!--<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/LUNCH1</property>-->
+    <property name="hibernate.connection.url">jdbc:postgresql://93.188.163.97:5432/LUNCH1</property>
     <property name="hibernate.connection.username">ulunch</property>
     <property name="hibernate.connection.password">alunch</property>
     
@@ -31,6 +31,11 @@
     <mapping class="co.com.lunch.persistencia.admin.ProductoEntity"/>
     <mapping class="co.com.lunch.persistencia.admin.TipoInformacionEntity"/>
     <mapping class="co.com.lunch.persistencia.admin.TagsEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.SaludEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.ProductoSaludEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.EnvioEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.FechaEntregaEntity"/>
+    <mapping class="co.com.lunch.persistencia.admin.HorasEntregaEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.DiaEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.FavoritoItemEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.FeedbackEntity"/>
