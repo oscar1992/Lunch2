@@ -6,6 +6,13 @@
 package co.com.lunch.persistencia.cliente;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -35,6 +42,14 @@ public class PadreEntity implements Serializable{
     private boolean primeravez;
     @Column(name = "PADR_NCON")
     private String numeroconfirmacion;
+    @Column(name = "PADR_GENE")
+    private String genero;
+    @Column(name = "PADR_FOTO")
+    private byte[] imagen;
+    @Column(name = "PADR_TERM")
+    private boolean termino;
+    @Column(name = "PADR_FETE")
+    private Date terminoFecha;
 
     public Integer getIdPadre() {
         return idPadre;
@@ -99,5 +114,42 @@ public class PadreEntity implements Serializable{
     public void setNumeroconfirmacion(String numeroconfirmacion) {
         this.numeroconfirmacion = numeroconfirmacion;
     }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+/*
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+*/
+    public boolean isTermino() {
+        return termino;
+    }
+
+    public void setTermino(boolean termino) {
+        this.termino = termino;
+    }
+
+    public String getTerminoFecha() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return df.format(terminoFecha);
+    }
+
+    public void setTerminoFecha(String terminoFecha) throws ParseException {
+        //this.terminoFecha = java.util.Date.from(Instant.parse(terminoFecha));
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.terminoFecha = df.parse(terminoFecha);
+        System.out.println("SETE: "+this.terminoFecha.toString());
+    }
+    
     
 }

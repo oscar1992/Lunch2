@@ -5,9 +5,12 @@
  */
 package co.com.lunch.enpoint;
 
+import co.com.lunch.correos.EnviaCorreo;
+import co.com.lunch.correos.EnviaCorreo2;
 import co.com.lunch.logic.cliente.FavoritoItemLogic;
 import co.com.lunch.logic.cliente.NinoLogic;
 import co.com.lunch.logic.cliente.NumeroLoncheraLogic;
+import co.com.lunch.logic.cliente.PadreLogic;
 import co.com.lunch.persistencia.cliente.FavoritoItemEntity;
 import co.com.lunch.persistencia.cliente.NinoEntity;
 import co.com.lunch.persistencia.cliente.NumeroLoncheraEntity;
@@ -167,5 +170,69 @@ public class clienteEndpoint {
         return listaRet;
     }
     
-
+    /**
+     * Método que permite ingresar un padre nuevo
+     * @param pad
+     * @return 
+     */
+    @WebMethod(operationName = "ingresaPadre")
+    public PadreEntity ingresaPadre(@WebParam(name = "Padre")PadreEntity pad){
+        PadreEntity padre = null;
+        System.out.println("fec: "+pad.getTerminoFecha());
+        try (PadreLogic padreLogic=new PadreLogic()){
+            
+            padre=padreLogic.ingresaPadre(pad);
+        } catch (Exception e) {
+            System.out.println("Error en el Web Service de ingresaPadre; "+e);
+        }
+        return padre;
+    }
+    
+    /**
+     * Método que permite comprobar la existencia de un correo
+     * @param email
+     * @return 
+     */
+    @WebMethod(operationName = "validaEmail")
+    public boolean validaEmail(@WebParam(name = "email")String email){
+        boolean exx = false;
+        try (PadreLogic padre = new PadreLogic()){
+            exx = padre.compruebaEmail(email);
+        } catch (Exception e) {
+            System.out.println("Error en el Web Service comprueba Email");
+        }
+        return exx;
+    }
+    /**
+     * Método que permite recuperar una contraseña de un correo
+     * @param email
+     * @return 
+     */
+    @WebMethod(operationName = "enviaRecuperacion")
+    public boolean enviaRecuperacion (@WebParam(name = "email")String email){
+        boolean enviado = false;
+        try {
+            EnviaCorreo2 enviaCorreo=new EnviaCorreo2();
+            enviado=enviaCorreo.envia(email);
+        } catch (Exception e) {
+            System.out.println("error en el servicio web de recuperar");
+        }
+        return enviado;
+    }
+    
+    /**
+     * Método que permite actualizar un padre
+     * @param padre
+     * @return 
+     */
+    @WebMethod(operationName = "actualizaPadre")
+    public PadreEntity actualizaPadre(@WebParam(name = "padre")PadreEntity padre){
+        PadreEntity pad = null;
+        try (PadreLogic padreLogic=new PadreLogic()){
+            pad=padreLogic.actualizaPadre(padre);
+        } catch (Exception e) {
+            System.out.println("Error en el WebService actualizaPadre: "+e);
+        }
+        return pad;
+    }
 }
