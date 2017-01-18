@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Test Reporte</title>
+    </h:head>
+    <h:body>
+        #{Reporte.init()}
+        <div>Reporte?</div>
+        <h:form>
+            <p:commandButton value="Pedidos" ajax="false" icon="ui-icon-arrowthick-1-s">
+                <p:fileDownload value="#{Reporte.file}" />
+            </p:commandButton>
+            <p:commandButton value="Tipos" ajax="false" icon="ui-icon-arrowthick-1-s">
+                <p:fileDownload value="#{Reporte.file2}" />
+            </p:commandButton>
+            <p:commandButton value="Lista de Items" ajax="false" icon="ui-icon-arrowthick-1-s">
+                <p:fileDownload value="#{Reporte.file3}" />
+            </p:commandButton>
+            <p:commandButton value="Lista de Productos" ajax="false" icon="ui-icon-arrowthick-1-s">
+                <p:fileDownload value="#{Reporte.file4}" />
+            </p:commandButton>
+            <p:commandButton value="Lista de Busquedas" ajax="false" icon="ui-icon-arrowthick-1-s">
+                <p:fileDownload value="#{Reporte.file5}" />
+            </p:commandButton>
+            <p:commandButton value="Lista de Usuarios" ajax="false" icon="ui-icon-arrowthick-1-s">
+                <p:fileDownload value="#{Reporte.file6}" />
+            </p:commandButton>
+        </h:form>
+    </h:body>
+</html>

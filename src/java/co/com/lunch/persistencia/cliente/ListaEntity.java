@@ -23,21 +23,15 @@ import javax.persistence.Table;
 public class ListaEntity implements Serializable{
     @Id
     @Column(name = "LIST_LIST")
-    private Integer id;
+    private Integer idLista;
     @JoinColumn(name = "LIST_PROD")
     @ManyToOne
     private ProductoEntity producto;
-    @JoinColumn(name = "LIST_DIA")
+    @JoinColumn(name = "LIST_TIPO")
     @ManyToOne
-    private DiaEntity dia;
+    private TipoLoncheraEntity tipoLonchera;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public ProductoEntity getProducto() {
         return producto;
@@ -47,12 +41,22 @@ public class ListaEntity implements Serializable{
         this.producto = producto;
     }
 
-    public DiaEntity getDia() {
-        return dia;
+    public TipoLoncheraEntity getTipoLonchera() {
+        return tipoLonchera;
     }
 
-    public void setDia(DiaEntity dia) {
-        this.dia = dia;
+    public void setTipoLonchera(TipoLoncheraEntity tipoLonchera) {
+        this.tipoLonchera = tipoLonchera;
     }
+
+    public Integer getIdLista() {
+        return idLista;
+    }
+
+    public void setIdLista(Integer idLista) {
+        this.idLista = idLista;
+    }
+
+    
     
 }

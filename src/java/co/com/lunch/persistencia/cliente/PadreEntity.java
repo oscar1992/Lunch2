@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 
 
@@ -17,6 +16,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -49,6 +49,7 @@ public class PadreEntity implements Serializable{
     @Column(name = "PADR_TERM")
     private boolean termino;
     @Column(name = "PADR_FETE")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date terminoFecha;
 
     public Integer getIdPadre() {

@@ -30,14 +30,12 @@ public class InformacionNutricionalLogic implements AutoCloseable{
     private boolean initOperation(){
         boolean retorno=false;
         try{
-            sesion=HibernateUtil.getSessionFactory().openSession();
-            tx=sesion.beginTransaction();
-            /*if(sesion==null){
+            if(sesion==null){
                 sesion=HibernateUtil.getSessionFactory().openSession();
                 tx=sesion.beginTransaction();
             }else{
-                System.out.println("Sesión existente");
-            }*/
+                System.out.println("Sesion ya iniciada");
+            }
             retorno=true;
         }catch(Error e){
             System.out.println("ERROR: HibernateUtil en logic");
@@ -57,7 +55,7 @@ public class InformacionNutricionalLogic implements AutoCloseable{
                 info.setId(maxId());
                 sesion.save(info);
                 System.out.println("info: "+info.getId());
-                tx.commit();
+                //tx.commit();
                 infoRetorno=info;
             }else{
                 System.out.println("ERROR de validación al conectar");

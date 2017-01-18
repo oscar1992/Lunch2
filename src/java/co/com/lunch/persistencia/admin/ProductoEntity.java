@@ -6,12 +6,16 @@
 package co.com.lunch.persistencia.admin;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -46,9 +50,9 @@ public class ProductoEntity implements Serializable{
     private boolean salud;
     @Column(name = "PROD_DISP")
     private boolean disponible;
-   
-    
-    
+    @Column(name = "PROD_ULTM")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date ultimaActualizacion;
 
     public Integer getIdProducto() {
         return idProducto;
@@ -138,6 +142,15 @@ public class ProductoEntity implements Serializable{
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
-    
+
+    public Date getUltimaActualizacion() {
+        //DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //return df.format(ultimaActualizacion);
+        return this.ultimaActualizacion;
+    }
+
+    public void setUltimaActualizacion(Date ultimaActualizacion){
+        this.ultimaActualizacion = ultimaActualizacion;
+    }
     
 }

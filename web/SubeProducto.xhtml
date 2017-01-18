@@ -26,7 +26,7 @@ and open the template in the editor.
                         <p:ajax listener="#{Sube.filtraCategoria(Sube.producto.tipo)}" update="cate" />
                         <f:selectItems value="#{Sube.listaTipo}"/>
                     </p:selectOneMenu>
-                    <h:outputText value="Categoaría"/>
+                    <h:outputText value="Categoría"/>
                     <p:selectOneMenu id="cate" value="#{Sube.producto.categoria.idCategoria}" style="width: 100%">
                         <f:selectItems value="#{Sube.listaCate}"/>
                     </p:selectOneMenu>

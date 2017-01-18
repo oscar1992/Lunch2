@@ -8,6 +8,7 @@ package co.com.lunch.Admon;
 import co.com.lunch.logic.admin.ProductoLogic;
 import co.com.lunch.persistencia.admin.MarcaEntity;
 import co.com.lunch.persistencia.admin.ProductoEntity;
+import co.com.lunch.zip.ComprimeImagenes;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -91,7 +92,7 @@ public class Actualiza implements Serializable{
         } catch (Exception ex) {
             Logger.getLogger(Actualiza.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        generaZip();
                 
     }
     
@@ -123,5 +124,10 @@ public class Actualiza implements Serializable{
         } catch (IOException ex) {
             Logger.getLogger(Actualiza.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    //Método que inicia el proceso de comprimir las imagenes guardadas en el servidor
+    public void generaZip(){
+        ComprimeImagenes comprime = new ComprimeImagenes();
     }
 }

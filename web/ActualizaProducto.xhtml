@@ -17,7 +17,7 @@ and open the template in the editor.
             <p:commandButton value="Volver" action="#{Actua.volver()}"/>
         </h:form>
         <h:form enctype="multipart/form-data">
-            
+
             <p:panel header="Actualización Producto" style="width: 49%">
                 <p:panelGrid columns="2">
                     <h:outputText value="nombre"/>
@@ -29,7 +29,7 @@ and open the template in the editor.
                         <p:ajax listener="#{Sube.filtraCategoria(Sube.producto.tipo)}" update="cate" />
                         <f:selectItems value="#{Sube.listaTipo}"/>
                     </p:selectOneMenu>
-                    <h:outputText value="Categoaría"/>
+                    <h:outputText value="Categoría"/>
                     <p:selectOneMenu id="cate" value="#{Actua.producto.categoria.idCategoria}" style="width: 100%">
                         <f:selectItems value="#{Sube.listaCate}"/>
                     </p:selectOneMenu>
@@ -57,46 +57,71 @@ and open the template in the editor.
                     <h:outputText value="Valor"/>
                     <p:inputText id="valorI" value="#{Info.ingresa.valor}"/>
                     <h:outputText value="Añade"/>
-                    <h:commandButton value="Añadir" action="#{Info.agergaInfo()}" type="submit" >
-                        
-                    </h:commandButton>
-                    <!--<p:commandButton action="" value="Añadir"/>-->
+                    <h:commandButton value="Añadir" action="#{Info.agergaInfo()}" type="submit" ></h:commandButton>
                 </p:panelGrid>
-                <p:dataTable id="tablaInfo" var="info" value="#{Info.listaInfo}" rowKey="#{info.id}" editable="true">
-                    <p:ajax event="rowEdit" listener="#{Info.activa}" update="tablaInfo" />
-                    <p:ajax event="rowEditCancel" listener="#{Info.cancela}" update="tablaInfo" />
-
-                    <p:column headerText="id">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{info.id}"/></f:facet>
-                            <f:facet name="input"><p:inputText value="a" disabled="true"/></f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                    <p:column headerText="Tipo">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{info.tipo.tipoNombre}"/></f:facet>
-                            <f:facet name="input">
-                                <p:selectOneMenu value="#{info.tipo.idTinfo}" style="width: 100%">
-                                    <f:selectItems value="#{Info.listaTipos}"/>
-                                </p:selectOneMenu>
-                            </f:facet>
-                        </p:cellEditor>
-
-                    </p:column>
-                    <p:column headerText="Valor">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{info.valor}"/></f:facet>
-                            <f:facet name="input"><p:inputText value="#{info.valor}"/></f:facet>
-                        </p:cellEditor>
-
-                    </p:column>
-                    <p:column headerText="Edita" style="width:32px;text-align: center">
-                        <p:column style="width:32px">
-                            <p:rowEditor />
-                        </p:column>
-                    </p:column>
-                </p:dataTable>
             </p:panel>
+            <!--<p:commandButton action="" value="Añadir"/>-->
+
+            <p:dataTable id="tablaInfo" var="info" value="#{Info.listaInfo}" rowKey="#{info.id}" editable="true">
+                <p:ajax event="rowEdit" listener="#{Info.activa}" update="tablaInfo" />
+                <p:ajax event="rowEditCancel" listener="#{Info.cancela}" update="tablaInfo" />
+
+                <p:column headerText="id">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{info.id}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="a" disabled="true"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Tipo">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{info.tipo.tipoNombre}"/></f:facet>
+                        <f:facet name="input">
+                            <p:selectOneMenu value="#{info.tipo.idTinfo}" style="width: 100%">
+                                <f:selectItems value="#{Info.listaTipos}"/>
+                            </p:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+
+                </p:column>
+                <p:column headerText="Valor">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{info.valor}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{info.valor}"/></f:facet>
+                    </p:cellEditor>
+
+                </p:column>
+                <p:column headerText="Edita" style="width:32px;text-align: center">
+                    <p:column style="width:32px">
+                        <p:rowEditor />
+                    </p:column>
+                </p:column>
+            </p:dataTable>
+            <h:panelGrid columns="3" cellpadding="5">
+                <h:outputLabel for="name" value="Etiqueta:" style="font-weight:bold" />
+                <p:inputText id="name" value="#{Etiq.etiqueta.nombreTag}" />
+                <h:commandButton value="Añadir Etiqueta" action="#{Etiq.ingresaEtiqueta()}" type="submit" ></h:commandButton>
+            </h:panelGrid>
+            <p:dataTable id="tabalEtiquetas" var="etiqueta" value="#{Etiq.listaEtiquetas}" rowKey="#{etiqueta.idTag}" editable="true">
+                <p:ajax event="rowEdit" listener="#{Etiq.actua}" update="tabalEtiquetas" />
+                <p:ajax event="rowEditCancel" listener="#{Etiq.cancela}" update="tabalEtiquetas" />
+                <p:column headerText="id">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{etiqueta.idTag}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{etiqueta.idTag}"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Etiqueta">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{etiqueta.nombreTag}"/></f:facet>
+                        <f:facet name="input"><p:inputText value="#{etiqueta.nombreTag}"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Edita" style="width:32px;text-align: center">
+                    <p:column style="width:32px">
+                        <p:rowEditor />
+                    </p:column>
+                </p:column>
+            </p:dataTable>
         </h:form>
     </h:body>
 </html>

@@ -6,8 +6,10 @@
 package co.com.lunch.logic.admin;
 
 import co.com.lunch.conexion.HibernateUtil;
+import co.com.lunch.persistencia.admin.ProductoEntity;
 import co.com.lunch.persistencia.admin.TagsEntity;
 import java.util.ArrayList;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -92,6 +94,69 @@ public class TagsLogic implements AutoCloseable{
             System.out.println("Error en la cosulta de tags (TagsPorProducto): "+e);
         }
         return listaRet;
+    }
+    
+    /**
+     * Método que almacena una etiqueta por producto
+     * @param idProducto
+     * @param Etiqueta
+     * @return 
+     */
+    public boolean insertaTag(ProductoEntity idProducto, String Etiqueta ){
+        boolean retorna = false;
+        try{
+            if(initOperation()){
+                TagsEntity tag = new TagsEntity();
+                tag.setIdTag(maxId());
+                tag.setNombreTag(Etiqueta);
+                tag.setProducto(idProducto);
+                sesion.save(tag);
+                retorna=true;
+            }else{
+                System.out.println("Error en la validación de conectar");
+            }
+        }catch(Exception e){
+            System.out.println("Error en la inserción del tag");
+        }
+        return retorna;
+    }
+    
+    /**
+     * Método que permite actualizar una etiqueta
+     * @param tag
+     * @return 
+     */
+    public boolean actualizaTag(TagsEntity tag){
+        boolean retorna = false;
+        try{
+            if(initOperation()){
+                sesion.update(tag);
+            }else{
+                System.out.println("Error en validación al conectar");
+            }
+        }catch(Exception e){
+            System.out.println("Error en actualizar tag");
+        }
+        return retorna;
+    }
+    
+    /**
+     * Método que trae todos las etiquetas de los productos
+     * @return 
+     */
+    public ArrayList<TagsEntity> listaTags(){
+        ArrayList<TagsEntity> lista = null;
+        try {
+            if(initOperation()){
+                Criteria crit = sesion.createCriteria(TagsEntity.class);
+                lista = (ArrayList<TagsEntity>) crit.list();
+            }else{
+                System.out.println("Error en la validación de conectar");
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la carga de la lista de Tags: "+e);
+        }
+        return lista;
     }
 
     @Override

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-11-18T17:48:42 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedidos" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e16d9e52-9cc0-4eab-a28a-078e586eba2b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Lunch 1"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM CLI_TPEDI]]>
+	</queryString>
+	<field name="pedi_pedi" class="java.lang.Integer"/>
+	<field name="pedi_padr" class="java.lang.Integer"/>
+	<field name="pedi_fepe" class="java.sql.Timestamp"/>
+	<field name="pedi_feen" class="java.sql.Timestamp"/>
+	<field name="pedi_hora" class="java.lang.String"/>
+	<field name="pedi_valo" class="java.math.BigDecimal"/>
+	<field name="pedi_cant" class="java.lang.Integer"/>
+	<field name="pedi_meto" class="java.lang.String"/>
+	<field name="pedi_entr" class="java.lang.Boolean"/>
+	<field name="pedi_canc" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="0" width="400" height="52" uuid="945732c0-3fbe-42bf-b3eb-b7b34205ffb5"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="32"/>
+				</textElement>
+				<text><![CDATA[Pedidos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="77" height="25" uuid="3410c52d-8bdf-47b8-96f3-62d65b84d2cb"/>
+				<text><![CDATA[ID del pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="0" width="75" height="25" uuid="a8ddbe4a-5463-43d2-8d65-4a12505ef688"/>
+				<text><![CDATA[ID del Padre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="152" y="0" width="75" height="25" uuid="9f8825db-65ab-4275-9218-20c6f67e4a6e"/>
+				<text><![CDATA[Fecha del Pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="0" width="75" height="25" uuid="aa6734cb-009c-44a3-b552-937621418238"/>
+				<text><![CDATA[Fecha de Entrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="0" width="75" height="25" uuid="f9d74107-dff2-46ce-9c14-50e95815768c"/>
+				<text><![CDATA[Hora de Entrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="377" y="0" width="75" height="25" uuid="69276092-b012-427e-aa48-cc4f75e8d437"/>
+				<text><![CDATA[Valor del Pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="452" y="0" width="75" height="25" uuid="5296c2eb-63a4-458d-8218-f34e556663d8"/>
+				<text><![CDATA[Cantidad Total del pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="527" y="0" width="75" height="25" uuid="bf5c444a-a091-4716-b7aa-9d42b4f7767e"/>
+				<text><![CDATA[Metodo de pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="602" y="0" width="75" height="25" uuid="d2eb8d8d-9121-44e8-8862-ccd3384349cc"/>
+				<text><![CDATA[Fue entregado?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="677" y="0" width="75" height="25" uuid="83671e58-6eab-4858-91ac-15da61b8db28"/>
+				<text><![CDATA[Fue Cancelado?]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="77" height="20" uuid="496248c8-7406-49a0-ae90-69a4a500f698"/>
+				<textFieldExpression><![CDATA[$F{pedi_pedi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="0" width="75" height="20" uuid="7762bf6d-7462-4c91-8a33-a6d16609570d"/>
+				<textFieldExpression><![CDATA[$F{pedi_padr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="0" width="75" height="20" uuid="3536bd53-4f2c-4f32-a1e2-c4425bedc210"/>
+				<textFieldExpression><![CDATA[$F{pedi_fepe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="227" y="0" width="75" height="20" uuid="e8a2753e-e6ca-482a-8754-5091e791c348"/>
+				<textFieldExpression><![CDATA[$F{pedi_feen}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="302" y="0" width="75" height="20" uuid="c3e5325e-1961-4c38-916a-96e0c30a26b9"/>
+				<textFieldExpression><![CDATA[$F{pedi_hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="377" y="0" width="75" height="20" uuid="ddad05bc-1b7c-418c-a4af-606607315863"/>
+				<textFieldExpression><![CDATA[$F{pedi_valo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="452" y="0" width="75" height="20" uuid="a671bf13-52ca-4cbf-9efe-75a3042ee731"/>
+				<textFieldExpression><![CDATA[$F{pedi_cant}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="527" y="0" width="75" height="20" uuid="eb1524f5-1937-4a14-a684-7908b6319e34"/>
+				<textFieldExpression><![CDATA[$F{pedi_meto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="602" y="0" width="75" height="20" uuid="1db489a5-0ee2-4b1c-acbe-b74256d1c105"/>
+				<textFieldExpression><![CDATA[$F{pedi_entr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="677" y="0" width="75" height="20" uuid="e7677d28-44a5-4ef2-b548-fd9744fcbf3d"/>
+				<textFieldExpression><![CDATA[$F{pedi_canc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

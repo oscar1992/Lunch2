@@ -14,18 +14,20 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form>
-            <p:dataTable var="produ" value="#{Lista.listaProductos}" selectionMode="single" selection="#{Lista.seleccion}" rowKey="#{produ.idProducto}">
-                <p:ajax event="rowSelect" listener="#{Lista.envia}" />
-                <p:column headerText="ID">
-                    <h:outputText value="#{produ.idProducto}"/>
-                </p:column>
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{produ.nombre}"/>
-                </p:column>
-                <p:column headerText="Imagen">
-                    <p:graphicImage url="/files/#{produ.nombreImagen}" height="64"/>
-                </p:column>
-            </p:dataTable>
+            
+                <p:dataTable var="produ" value="#{Lista.listaProductos}" selectionMode="single" selection="#{Lista.seleccion}" rowKey="#{produ.idProducto}">
+                    <p:ajax event="rowSelect" listener="#{Lista.envia}" />
+                    <p:column headerText="ID" filterBy="#{produ.idProducto}" filterMatchMode="contains" sortBy="#{produ.idProducto}">
+                        <h:outputText value="#{produ.idProducto}"/>
+                    </p:column>
+                    <p:column headerText="Nombre" filterBy="#{produ.nombre}" filterMatchMode="contains">
+                        <h:outputText value="#{produ.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Imagen">
+                        <p:graphicImage url="/files/#{produ.nombreImagen}" height="64"/>
+                    </p:column>
+                </p:dataTable>
+
         </h:form>
     </h:body>
 </html>

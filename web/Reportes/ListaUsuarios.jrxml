@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-11-22T10:02:34 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListaUsuarios" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="596b69a2-2c73-4772-a4b2-544fa539b239">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Lunch 1"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM CLI_TPADR]]>
+	</queryString>
+	<field name="padr_padr" class="java.lang.Integer"/>
+	<field name="padr_nomb" class="java.lang.String"/>
+	<field name="padr_tele" class="java.lang.String"/>
+	<field name="padr_dire" class="java.lang.String"/>
+	<field name="padr_emai" class="java.lang.String"/>
+	<field name="padr_cont" class="java.lang.String"/>
+	<field name="padr_prim" class="java.lang.Boolean"/>
+	<field name="padr_ncon" class="java.lang.String"/>
+	<field name="padr_gene" class="java.lang.String"/>
+	<field name="padr_term" class="java.lang.Boolean"/>
+	<field name="padr_fete" class="java.sql.Timestamp"/>
+	<field name="padr_foto" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="0" width="400" height="50" uuid="837b207d-cfb1-431f-86ff-42fb8deb183b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="37"/>
+				</textElement>
+				<text><![CDATA[Static Text]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="30" uuid="04cd7344-d2e8-4e95-b8fb-7d555f63867d"/>
+				<text><![CDATA[padr_padr]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="66" height="30" uuid="dbb5b696-5282-491c-9d09-887ee909e27c"/>
+				<text><![CDATA[padr_nomb]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="0" width="66" height="30" uuid="250ad7f0-7269-4b9c-8171-dc7362c8e161"/>
+				<text><![CDATA[padr_tele]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="0" width="66" height="30" uuid="95fdb0b1-c8a0-4616-891d-f8c6154a18e6"/>
+				<text><![CDATA[padr_dire]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="0" width="66" height="30" uuid="1a706d6b-4cdf-4b4c-b182-e0331b496c95"/>
+				<text><![CDATA[padr_emai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="0" width="66" height="30" uuid="563b70f4-2c80-460e-b8d5-1f22ce090c36"/>
+				<text><![CDATA[padr_cont]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="66" height="30" uuid="b929aabb-3769-403a-8b30-88b524ecd5dc"/>
+				<text><![CDATA[padr_prim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="0" width="66" height="30" uuid="45799e8d-8f2c-49a6-8204-e9693bf627f0"/>
+				<text><![CDATA[padr_ncon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="512" y="0" width="66" height="30" uuid="72f5e3bb-9f9a-4511-9e14-b0ccf5614a09"/>
+				<text><![CDATA[padr_gene]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="578" y="0" width="66" height="30" uuid="5c75945c-3e91-43b4-af8a-b2c00229a7a4"/>
+				<text><![CDATA[padr_term]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="644" y="0" width="66" height="30" uuid="06c819a5-a9f0-4f5f-a4ce-68b908377d09"/>
+				<text><![CDATA[padr_fete]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="710" y="0" width="66" height="30" uuid="47f0453d-372c-4032-88a0-3036e3bb2182"/>
+				<text><![CDATA[padr_foto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="30" uuid="bdafebf5-0e24-438f-88f7-ba12aa5fadb7"/>
+				<textFieldExpression><![CDATA[$F{padr_padr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="66" height="30" uuid="c176b490-d255-4b5a-bcdd-f64eb8efbf5a"/>
+				<textFieldExpression><![CDATA[$F{padr_nomb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="0" width="66" height="30" uuid="5184e2f5-6e57-49e2-9c64-b410077cf5c9"/>
+				<textFieldExpression><![CDATA[$F{padr_tele}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="0" width="66" height="30" uuid="32f10141-2b19-47f5-aeab-253651830ee8"/>
+				<textFieldExpression><![CDATA[$F{padr_dire}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="0" width="66" height="30" uuid="05c9d252-2360-4848-885d-04ec53efc492"/>
+				<textFieldExpression><![CDATA[$F{padr_emai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="0" width="66" height="30" uuid="6b7864aa-aafa-43c5-bc08-dc8046d64a4f"/>
+				<textFieldExpression><![CDATA[$F{padr_cont}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="66" height="30" uuid="89671d0e-b559-4120-b11b-e5295285b7e3"/>
+				<textFieldExpression><![CDATA[$F{padr_prim}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="0" width="66" height="30" uuid="b1f26e64-e168-412a-8c7c-8c91cf33bebd"/>
+				<textFieldExpression><![CDATA[$F{padr_ncon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="512" y="0" width="66" height="30" uuid="c573297f-9b30-44b3-9aef-4605d396fbee"/>
+				<textFieldExpression><![CDATA[$F{padr_gene}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="578" y="0" width="66" height="30" uuid="cb45808a-f84f-40bd-adde-4bedbd99b67f"/>
+				<textFieldExpression><![CDATA[$F{padr_term}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="644" y="0" width="66" height="30" uuid="7e3323ee-2270-438e-8584-5109ceef590c"/>
+				<textFieldExpression><![CDATA[$F{padr_fete}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="710" y="0" width="66" height="30" uuid="3de1b9af-cca5-4390-9d05-7cb3ce2d557c"/>
+				<textFieldExpression><![CDATA[$F{padr_foto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

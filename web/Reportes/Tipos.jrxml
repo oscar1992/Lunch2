@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-11-18T15:46:27 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Tipos" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c729b3ee-40ee-4a7b-be78-2d376314550f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Lunch 1"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT * FROM CLI_TTIPO]]>
+	</queryString>
+	<field name="tipo_tipo" class="java.lang.Integer"/>
+	<field name="tipo_nomb" class="java.lang.String"/>
+	<field name="tipo_cant" class="java.lang.Integer"/>
+	<field name="tipo_pedi" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="0" width="400" height="53" uuid="cce40567-2a82-416f-871f-a41a36be32b0"/>
+				<textElement textAlignment="Center">
+					<font size="37"/>
+				</textElement>
+				<text><![CDATA[Tipificación]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="188" height="20" uuid="484628ce-d808-4181-bb97-2ca50853b030"/>
+				<text><![CDATA[tipo_tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="0" width="188" height="20" uuid="5668a8d4-bc49-4ade-887e-e68f759562b1"/>
+				<text><![CDATA[tipo_nomb]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="0" width="188" height="20" uuid="eab4486f-907f-4405-b563-cfe622fb2ca4"/>
+				<text><![CDATA[tipo_cant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="564" y="0" width="188" height="20" uuid="acccbdc7-1f0b-4d62-93dd-bbe6fdfe4b4b"/>
+				<text><![CDATA[tipo_pedi]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="188" height="20" uuid="a9aecdb2-5fcc-40f3-b5eb-0a3ec3d2a535"/>
+				<textFieldExpression><![CDATA[$F{tipo_tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="0" width="188" height="20" uuid="be558f62-607f-43b8-81b1-66477adb216a"/>
+				<textFieldExpression><![CDATA[$F{tipo_nomb}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="376" y="0" width="188" height="20" uuid="3698e915-7c13-431a-ab8b-34e1207d4884"/>
+				<textFieldExpression><![CDATA[$F{tipo_cant}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="564" y="0" width="188" height="20" uuid="2c0eb7fc-c937-4801-81fe-3a62178fc451"/>
+				<textFieldExpression><![CDATA[$F{tipo_pedi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Test Cajas Saludables</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:accordionPanel value="#{Cajas.listaCajas}" var="caja">
+                <p:tab title="#{caja.nombreSalud}">
+                    <p:dataTable value="#{Cajas.selcionaLista(caja)}" var="listaProd">
+                        <p:column headerText="Producto Nuevo">
+                            <p:selectOneMenu value="#{listaProd.producto.idProducto}" style="width: 100%" rendered="#{listaProd.producto.tipo == 1}">
+                                <f:selectItems value="#{Cajas.listaEnergia}"/>
+                            </p:selectOneMenu>
+                            <p:selectOneMenu value="#{listaProd.producto.idProducto}" style="width: 100%" rendered="#{listaProd.producto.tipo == 2}">
+                                <f:selectItems value="#{Cajas.listaVitaminas}"/>
+                            </p:selectOneMenu>
+                            <p:selectOneMenu value="#{listaProd.producto.idProducto}" style="width: 100%" rendered="#{listaProd.producto.tipo == 3}">
+                                <f:selectItems value="#{Cajas.listaCrecimiento}"/>
+                            </p:selectOneMenu>
+                            <p:selectOneMenu value="#{listaProd.producto.idProducto}" style="width: 100%" rendered="#{listaProd.producto.tipo == 4}">
+                                <f:selectItems value="#{Cajas.listaBebidas}"/>
+                            </p:selectOneMenu>
+                        </p:column>
+                        <p:column headerText="Producto Actual">
+                            <h:outputText value="#{listaProd.producto.nombre}" style="width: 100%"/>
+                        </p:column>
+                        <p:column headerText="actualiza">
+                            <h:commandButton value="Actualiza" action="#{Cajas.cambia(listaProd)}" type="submit" ></h:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </p:tab>
+            </p:accordionPanel>
+        </h:form>
+    </h:body>
+</html>

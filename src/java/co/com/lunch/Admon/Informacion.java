@@ -140,7 +140,8 @@ public class Informacion implements Serializable {
                 System.out.println("Ingreso Falido");
             }
         } catch (Exception ex) {
-            Logger.getLogger(Informacion.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("ERROR al subir info nutricional: "+ex);
+            //Logger.getLogger(Informacion.class.getName()).log(Level.SEVERE, null, ex);
         }
         listaInfo();
     }

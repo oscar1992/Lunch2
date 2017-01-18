@@ -35,7 +35,7 @@ public class EnviaCorreo2 {
             System.out.println("Error cambiando la contraseña");
         }
         // La dirección de la cuenta de envío (from)
-        String de = "jjjjj@codehero.co";
+        String de = "La Lonchera";
 
         // El servidor (host). En este caso usamos localhost
         String host = "localhost";
@@ -54,7 +54,7 @@ public class EnviaCorreo2 {
         Session sesion = Session.getInstance(propiedades,
                 new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("katana092@gmail.com", "yfekwddogkwkhrdg");
+                return new PasswordAuthentication("laloncheraparati@gmail.com", "rqeasqirhfvbyfcs");
             }
         });
 
@@ -69,10 +69,10 @@ public class EnviaCorreo2 {
             //mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress("katana092@gmail.com"));
             mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             // Asignamos el asunto
-            mensaje.setSubject("Primer correo sencillo");
+            mensaje.setSubject("Reestablecer Contraseña");
 
             // Asignamos el mensaje como tal
-            mensaje.setText("Su contraseña es: " + correo);
+            mensaje.setText("Hola! Solicitaste una nueva contrasena. Tu nueva contrasena es: " + correo);
 
             // Enviamos el correo
             Transport.send(mensaje);

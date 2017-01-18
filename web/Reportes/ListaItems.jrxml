@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-11-18T17:23:29 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListaItems" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bd09f9bb-abc9-4edb-a3d4-a6f70caf60c4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Lunch 1"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT * FROM CLI_TLIST]]>
+	</queryString>
+	<field name="list_list" class="java.lang.Integer"/>
+	<field name="list_prod" class="java.lang.Integer"/>
+	<field name="list_tipo" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="0" width="400" height="60" uuid="deed19c2-bffc-4b22-8dab-a2f1869e2d01"/>
+				<textElement textAlignment="Center">
+					<font size="47"/>
+				</textElement>
+				<text><![CDATA[Lista de Items]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="268" height="20" uuid="55c5d8fa-845b-4d10-85ce-1130161c88c3"/>
+				<text><![CDATA[ID de Lista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="0" width="267" height="20" uuid="4acbcb6c-ebd7-4406-b36d-88e481ad935e"/>
+				<text><![CDATA[ID de Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="535" y="0" width="267" height="20" uuid="882fb732-5c64-4a20-90e1-2f3b34dd1dfc"/>
+				<text><![CDATA[ID de Tipificación]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="2" y="0" width="268" height="20" uuid="2c769835-8917-492f-a891-3f24a7da037f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{list_list}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="267" height="20" uuid="23899954-e7e9-40cd-8745-21740c2f2a12"/>
+				<textFieldExpression><![CDATA[$F{list_prod}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="537" y="0" width="267" height="20" uuid="e24056dc-255d-44c1-b7e0-54da8f322a63"/>
+				<textFieldExpression><![CDATA[$F{list_tipo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

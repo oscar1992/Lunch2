@@ -92,7 +92,7 @@ public class adminEndpoint {
         try(InformacionNutricionalLogic logic=new InformacionNutricionalLogic()){
             infoRetorna=logic.listaInformacionNutricional();
         }catch(Exception e){
-            System.out.println("ERROR en la actualización del webservice");
+            System.out.println("ERROR en la actualización del webservice listaInformación");
         }
         return infoRetorna;
     }
@@ -555,6 +555,21 @@ public class adminEndpoint {
     }
     
     /**
+     * Método que trae la lista de tags
+     * @return 
+     */
+    @WebMethod(operationName = "listaTags")
+    public ArrayList<TagsEntity> listaTags(){
+        ArrayList<TagsEntity> lista = null;
+        try(TagsLogic tagsLogic=new TagsLogic()){
+            lista = tagsLogic.listaTags();
+        }catch(Exception e){
+            System.out.println("Error de web service (listaTags)");
+        }
+        return lista;
+    }
+    
+    /**
      * Método que permite ingresar una caja saludable nueva
      * @param salud
      * @return 
@@ -649,7 +664,7 @@ public class adminEndpoint {
     }
     
     /**
-     * Método que trae todos los items favoritos
+     * Método que trae todos los items favosaludabkesritos
      * @return 
      */
     @WebMethod(operationName = "listaProductoSaludTodos")

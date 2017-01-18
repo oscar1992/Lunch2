@@ -143,6 +143,28 @@ public class FavoritoItemLogic implements AutoCloseable {
         }
         return lista;
     }
+    
+    /**
+     * Método que trae los items de las loncheras por id de padre
+     * @param idPadre
+     * @return 
+     */
+    public ArrayList<FavoritoItemEntity> favoritoPorPadre(Integer idPadre){
+        ArrayList<FavoritoItemEntity> lista = new ArrayList<>();
+        try {
+            if (initOperation()) {
+                System.out.println("idPadre: "+idPadre);
+                Query query = sesion.createQuery("SELECT f FROM FavoritoItemEntity f WHERE f.nlonchera.id IN (SELECT n.id FROM NumeroLoncheraEntity n WHERE n.padre.id = :idL) ORDER BY f.id");
+                //Query query = sesion.createQuery("SELECT f FROM FavoritoItemEntity f WHERE f.nlonchera.idNumeroLonchera = :idL");
+                query.setParameter("idL", idPadre);
+                lista = (ArrayList<FavoritoItemEntity>) query.list();
+                System.out.println("Lista: "+lista.size());
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la consulta de los favorios Por Lonchera");
+        }
+        return lista;
+    }
 
     /**
      * Método que permite ingresar una lonchera favorita a través de sus

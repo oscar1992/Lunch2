@@ -13,12 +13,12 @@
     
     <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
     
-    <property name="connection_pool_size">1</property>
-    <property name="hibernate.c3p0.min_size">1</property>
-    <property name="hibernate.c3p0.max_size">10</property>
-    <property name="hibernate.c3p0.timeout">20</property>
+    <property name="connection_pool_size">10</property>
+    <property name="hibernate.c3p0.min_size">5</property>
+    <property name="hibernate.c3p0.max_size">20</property>
+    <property name="hibernate.c3p0.timeout">10</property>
     <property name="hibernate.c3p0.max_statements">50</property>
-    <property name="hibernate.c3p0.idle_test_period">10</property>
+    <property name="hibernate.c3p0.idle_test_period">5</property>
     
     <mapping class="co.com.lunch.persistencia.admin.CajaPredeterminadaEntity"/>
     <mapping class="co.com.lunch.persistencia.admin.CategoriaEntity"/>
@@ -36,7 +36,6 @@
     <mapping class="co.com.lunch.persistencia.admin.EnvioEntity"/>
     <mapping class="co.com.lunch.persistencia.admin.FechaEntregaEntity"/>
     <mapping class="co.com.lunch.persistencia.admin.HorasEntregaEntity"/>
-    <mapping class="co.com.lunch.persistencia.cliente.DiaEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.FavoritoItemEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.FeedbackEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.ListaEntity"/>
@@ -44,5 +43,8 @@
     <mapping class="co.com.lunch.persistencia.cliente.NumeroLoncheraEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.PadreEntity"/>
     <mapping class="co.com.lunch.persistencia.cliente.TarjetasEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.PedidoEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.TipoLoncheraEntity"/>
+    <mapping class="co.com.lunch.persistencia.cliente.BusquedasEntity"/>
   </session-factory>
 </hibernate-configuration>

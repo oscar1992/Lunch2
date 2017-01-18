@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2016-11-17T15:11:38 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportameeste" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3ebd9788-2d96-446a-930e-c765f1f86749">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Lunch 1"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="425"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="564"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="647"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="353"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM CLI_TPEDI]]>
+	</queryString>
+	<field name="pedi_pedi" class="java.lang.Integer"/>
+	<field name="pedi_padr" class="java.lang.Integer"/>
+	<field name="pedi_fepe" class="java.sql.Timestamp"/>
+	<field name="pedi_feen" class="java.sql.Timestamp"/>
+	<field name="pedi_hora" class="java.lang.String"/>
+	<field name="pedi_valo" class="java.math.BigDecimal"/>
+	<field name="pedi_cant" class="java.lang.Integer"/>
+	<field name="pedi_meto" class="java.lang.String"/>
+	<field name="pedi_entr" class="java.lang.Boolean"/>
+	<field name="pedi_canc" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="191" y="0" width="100" height="30" uuid="3c738212-0a6d-4e60-883d-0dbb355c093b"/>
+				<text><![CDATA[pedi_pedi]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="100" height="30" uuid="23f66e23-ce6b-48d0-845b-5f14cfdd4c38"/>
+				<textFieldExpression><![CDATA[$F{pedi_pedi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

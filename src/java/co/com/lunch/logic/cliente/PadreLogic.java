@@ -8,6 +8,7 @@ package co.com.lunch.logic.cliente;
 import co.com.lunch.conexion.HibernateUtil;
 import co.com.lunch.persistencia.cliente.PadreEntity;
 import java.util.ArrayList;
+import java.util.Date;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 
@@ -148,9 +149,10 @@ public class PadreLogic implements AutoCloseable {
             System.out.println("Error Login: " + e);
         }
         if (padre == null) {
-            System.out.println("Usuario no Existe");
+            System.out.println("Usuario no Existe: "+email+" -- "+pass);
         } else {
-            System.out.println("Autenticación de: " + padre.getEmail());
+            Date fech = new Date();
+            System.out.println("Autenticación de: " + padre.getEmail() + " - "+fech);
 
         }
         return padre;
@@ -164,9 +166,12 @@ public class PadreLogic implements AutoCloseable {
                 query.setParameter("ema", email);
                 PadreEntity padre = (PadreEntity) query.uniqueResult();
                 if (padre != null) {
+                    System.out.println("Ema P : "+padre.getEmail()+" ema ws: "+email);
                     if (padre.getEmail().equals(email)) {
                         exx = true;
                     }
+                }else{
+                    System.out.println("Padre NULO");
                 }
 
             }

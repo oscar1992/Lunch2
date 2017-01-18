@@ -11,6 +11,7 @@ import co.com.lunch.logic.admin.ProductoLogic;
 import co.com.lunch.persistencia.admin.CategoriaEntity;
 import co.com.lunch.persistencia.admin.MarcaEntity;
 import co.com.lunch.persistencia.admin.ProductoEntity;
+import co.com.lunch.zip.ComprimeImagenes;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -229,6 +230,7 @@ public class Sube implements Serializable {
                 try {
                     subeImagen(sostiene2.getFileName(), sostiene2.getInputstream());
                     message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inserción Correcta", null);
+                    
                 } catch (IOException ex) {
                     message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error de Inserción", null);
                     Logger.getLogger(Sube.class.getName()).log(Level.SEVERE, null, ex);
@@ -286,4 +288,6 @@ public class Sube implements Serializable {
         iniciaProducto();
         muestraMSG = true;
     }
+    
+    
 }

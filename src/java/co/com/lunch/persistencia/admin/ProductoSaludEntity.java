@@ -6,12 +6,16 @@
 package co.com.lunch.persistencia.admin;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -29,6 +33,9 @@ public class ProductoSaludEntity implements Serializable{
     @JoinColumn(name = "PRSA_SALU")
     @ManyToOne
     private SaludEntity salud;
+    @Column(name = "PRSA_ULTM")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date ultimaActualizacion; 
 
     public Integer getIdProductosalud() {
         return idProductosalud;
@@ -52,6 +59,16 @@ public class ProductoSaludEntity implements Serializable{
 
     public void setSalud(SaludEntity salud) {
         this.salud = salud;
+    }
+
+    public Date getUltimaActualizacion() {
+        //DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //return df.format(ultimaActualizacion);
+        return this.ultimaActualizacion;
+    }
+
+    public void setUltimaActualizacion(Date ultimaActualizacion) {
+        this.ultimaActualizacion = ultimaActualizacion;
     }
     
     
