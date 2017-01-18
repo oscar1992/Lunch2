@@ -31,14 +31,19 @@ public class ComprimeImagenes {
 
     public ComprimeImagenes() {
         partes = new ArrayList<>();
-        lista = new ArrayList<String>();
+        
         listaProducto = new ArrayList<ProductoEntity>();
         llenaProductos();
         reparte();
         int i = 0;
         for (ArrayList<ProductoEntity> parte : partes) {
+            lista = new ArrayList<String>();
             listaArchivos(i);
-            llenaLista(new File(rutaEntrada), parte);
+            for(ProductoEntity prod: parte){
+                String ruta = rutaEntrada+"/"+prod.getNombreImagen();
+                agregaLista(new File(ruta));
+            }
+            //llenaLista(new File(rutaEntrada), parte);
             if (lista != null) {
                 comprime();
             } else {
@@ -107,7 +112,13 @@ public class ComprimeImagenes {
         rutaSalida = rb.getString("ZIP").trim();
         rutaSalida = rutaSalida.concat(""+i+".zip");
     }
-
+    
+    private void agregaLista(File nodo){
+        if(nodo.isFile()){
+            lista.add(generaEntradaZip(""+nodo.getAbsoluteFile()));
+        }
+    }
+    
     private void llenaLista(File nodo, ArrayList<ProductoEntity> parte) {
         //System.out.println("Inicia LLena Lista");
         //System.out.println("NODO: " + nodo.getAbsoluteFile());
@@ -122,20 +133,21 @@ public class ComprimeImagenes {
                 }
 
             } else {
-                //System.out.println("No es un archivo");
+                System.out.println("No es un archivo: "+nodo.getName());
             }
             if (nodo.isDirectory()) {
                 String[] subLista = nodo.list();
                 for (String nombreArchivo : subLista) {
-                    llenaLista(new File(nodo, nombreArchivo), parte);
+                    //llenaLista(new File(nodo, nombreArchivo), parte);
                 }
+            
             } else {
-                //System.out.println("No es un directorio");
+                System.out.println("No es un directorio");
             }
         } catch (Exception e) {
             //System.out.println("Nodo NUlo: " + nodo + " err: " + e);
         }
-        //System.out.println("____________Lista Fin tama: " + lista.size());
+        System.out.println("____________Lista Fin tama: " + lista.size());
     }
 
     public String generaEntradaZip(String archivo) {
